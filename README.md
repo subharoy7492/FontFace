@@ -4,15 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="https://raw.githubusercontent.com/h-ibaldo/Raleway_Fixed_Numerals/master/css/rawline.css" rel="stylesheet"> 
-<style>
-h2{
-font-family: 'Nilmaya'; 
-}
-  </style>
+<link href="https://raw.githubusercontent.com/subharoy7492/FontFace/refs/heads/main/FontFamily.css" rel="stylesheet"> 
 </head>
 
-<body><h2>নীল Nilমায়া</h2>
+<body><h2 style="font-family: Nilmaya">নীল Nilমায়া</h2>
 
 </body>
 
