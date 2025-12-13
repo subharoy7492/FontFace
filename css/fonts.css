@@ -7,7 +7,7 @@
 <link rel="preload" href="https://cdn.jsdelivr.net/gh/subharoy7492/FontFace@latest/fonts/BH Nil Maya Unicode.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/subharoy7492/FontFace@latest/css/fonts.css">
 <style>
-  body { font-family: 'MyFont', system-ui, Arial, sans-serif; padding: 2rem; }
+  body { font-family: 'Maya', sans-serif; padding: 2rem; }
   h1 { font-weight:400; }
 </style>
 </head>
