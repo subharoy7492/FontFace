@@ -1,18 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>FontFace CDN demo</title>
-<link rel="preload" href="https://cdn.jsdelivr.net/gh/subharoy7492/FontFace@v1.0.0/fonts/NilMaya.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/subharoy7492/FontFace@v1.0.0/css/fonts.css">
-<style>
-  body { font-family: 'Maya', sans-serif; padding: 2rem; }
-  h1 { font-weight:400; }
-</style>
-</head>
-<body>
-  <h1>FontFace CDN — Demo</h1>
-  <p>This page demonstrates loading 'MyFont' from the CDN. Replace the files in /fonts/ with your real .woff2/.woff files and update names if necessary.</p>
-</body>
-</html>
+ @font-face {
+        font-family: 'Maya';
+        src: url(https://cdn.jsdelivr.net/gh/subharoy7492/FontFace@v1.0.0/fonts/NilMaya.woff2) format('woff2');
+    }
