@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>FontFace CDN demo</title>
-<link rel="preload" href="https://cdn.jsdelivr.net/gh/subharoy7492/FontFace@latest/fonts/BH Nil Maya Unicode.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/subharoy7492/FontFace@latest/css/fonts.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/gh/subharoy7492/FontFace/fonts/NilMaya.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/subharoy7492/FontFace/css/fonts.css">
 <style>
   body { font-family: 'Maya', sans-serif; padding: 2rem; }
   h1 { font-weight:400; }
