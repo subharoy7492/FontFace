@@ -1,4 +1,9 @@
  @font-face {
         font-family: 'Maya';
-        src: url(https://cdn.jsdelivr.net/gh/subharoy7492/FontFace/fonts/NilMaya.woff2) format('woff2');
+        src: url(https://cdn.jsdelivr.net/gh/subharoy7492/FontFace/fonts/NilMaya.woff2) format('woff2'); font-display: swap;
+    }
+
+ @font-face {
+        font-family: 'SabitAdorso';
+        src: url(https://cdn.jsdelivr.net/gh/subharoy7492/FontFace/fonts/SabitAdorshoVF.woff2) format('woff2'); font-display: swap;
     }
