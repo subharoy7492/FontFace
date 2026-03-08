@@ -36,4 +36,4 @@ Replace `@latest` with `@v1.0.0` or a commit SHA in the jsDelivr URL to avoid ca
 - If you host elsewhere (S3, CloudFront, Cloudflare), ensure `Access-Control-Allow-Origin` and `Content-Type` are set correctly.
 
 ## License & legal
-Make sure you have the right to host and distribute any font you upload.
+Visit <a href="https://banglaharaf.com">BanglaHaraf</a> for Licence. 
