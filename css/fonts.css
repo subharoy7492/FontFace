@@ -1,5 +1,5 @@
  @font-face {
-        font-family: 'Maya';
+        font-family: 'NilMaya';
         src: url(https://cdn.jsdelivr.net/gh/subharoy7492/FontFace/fonts/NilMaya.woff2) format('woff2'); font-display: swap;
     }
 
@@ -7,3 +7,7 @@
         font-family: 'SabitAdorso';
         src: url(https://cdn.jsdelivr.net/gh/subharoy7492/FontFace/fonts/SabitAdorshoVF.woff2) format('woff2'); font-display: swap;
     }
+ @font-face {
+        font-family: 'Ruhulamin';
+        src: url(https://cdn.jsdelivr.net/gh/subharoy7492/FontFace/fonts/Ruhul%20Amin%20Unicode.woff2) format('woff2'); font-display: swap;
+ }
