@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>হাসান রংধনু</title>
+
+<<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/subharoy7492/FontFace@latest/css/fonts.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Ruhulamin',sans-serif;
+background:#f5f6f7;
+color:#202124;
+transition:.3s;
+}
+
+.dark{
+background:#0f1115;
+color:#e8eaed;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:20px;
+}
+
+.header{
+text-align:center;
+margin-bottom:25px;
+position:relative;
+}
+
+.header h1{
+font-size:34px;
+}
+
+.night{
+position:absolute;
+right:0;
+top:0;
+background:none;
+border:none;
+font-size:22px;
+cursor:pointer;
+}
+
+.layout{
+display:grid;
+grid-template-columns:2fr 1fr;
+gap:20px;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 4px 12px rgba(0,0,0,.08);
+}
+
+.dark .card{
+background:#1c1f26;
+}
+
+/* CONTROLS */
+
+.controls{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:12px;
+margin-bottom:12px;
+}
+
+.controls label{
+font-size:13px;
+}
+
+.controls input{
+width:100%;
+}
+
+/* TEXTBOX */
+
+textarea{
+width:100%;
+min-height:250px;
+font-size:40px;
+border:none;
+outline:none;
+resize:vertical;
+font-family:"HasanRongdhonu";
+background:transparent;
+}
+
+.dark textarea{
+background:#1c1f26;
+color:white;
+}
+
+/* BUTTONS UNDER TEXTBOX */
+
+.buttons{
+margin-top:12px;
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+}
+
+button{
+background:#1a73e8;
+border:none;
+padding:8px 14px;
+border-radius:6px;
+color:white;
+cursor:pointer;
+}
+
+/* GLYPHS */
+
+.glyph-grid{
+display:none;
+grid-template-columns:repeat(auto-fill,minmax(60px,1fr));
+gap:10px;
+margin-top:15px;
+}
+
+.glyph{
+background:#f1f3f4;
+height:60px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:6px;
+font-size:26px;
+font-family:"HasanRongdhonu";
+}
+
+.dark .glyph{
+background:#2a2d34;
+}
+
+/* RIGHT PANEL */
+
+.designer{
+text-align:center;
+}
+
+.designer img{
+width:90px;
+height:90px;
+border-radius:50%;
+margin-bottom:10px;
+}
+
+.download{
+text-align:center;
+margin-top:20px;
+}
+
+.download-btn{
+display:inline-block;
+background:#1a73e8;
+padding:10px 24px;
+border-radius:25px;
+color:white;
+text-decoration:none;
+font-weight:600;
+}
+
+.counter{
+margin-top:6px;
+font-size:14px;
+}
+
+/* EMBED */
+
+.embed-box{
+display:none;
+margin-top:10px;
+}
+
+.embed-line{
+background:#f1f3f4;
+padding:10px;
+border-radius:6px;
+margin-bottom:8px;
+position:relative;
+font-family:monospace;
+font-size:13px;
+}
+
+.dark .embed-line{
+background:#2a2d34;
+}
+
+.copy{
+position:absolute;
+right:6px;
+top:6px;
+background:#34a853;
+border:none;
+color:white;
+padding:4px 8px;
+font-size:12px;
+border-radius:4px;
+cursor:pointer;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+.layout{
+grid-template-columns:1fr;
+}
+
+.controls{
+grid-template-columns:repeat(2,1fr);
+}
+
+textarea{
+font-size:28px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+<h1>হাসান রংধনু</h1>
+<p>বাংলা ফন্ট লাইভ প্রিভিউ</p>
+<button class="night" onclick="toggleNight()">🌙</button>
+</div>
+
+<div class="layout">
+
+<!-- LEFT SIDE -->
+
+<div class="card">
+
+<div class="controls">
+
+<div>
+<label>Font Size</label>
+<input type="range" min="20" max="90" value="40" id="size">
+</div>
+
+<div>
+<label>Weight</label>
+<input type="range" min="100" max="900" step="100" value="400" id="weight">
+</div>
+
+<div>
+<label>Spacing</label>
+<input type="range" min="-2" max="15" value="0" id="spacing">
+</div>
+
+<div>
+<label>Line Height</label>
+<input type="range" min="1" max="3" step="0.1" value="1.3" id="lineheight">
+</div>
+
+</div>
+
+<textarea id="preview">এখানে লিখে ফন্ট পরীক্ষা করুন</textarea>
+
+<div class="buttons">
+
+<button onclick="sample1()">Sample 1</button>
+<button onclick="sample2()">Sample 2</button>
+<button onclick="copyText()">Copy</button>
+<button onclick="clearText()">Clear</button>
+<button onclick="toggleGlyph()">Glyphs</button>
+
+</div>
+
+<div class="glyph-grid" id="glyphs">
+
+<div class="glyph">অ</div>
+<div class="glyph">আ</div>
+<div class="glyph">ই</div>
+<div class="glyph">ঈ</div>
+<div class="glyph">উ</div>
+<div class="glyph">ঊ</div>
+<div class="glyph">ক</div>
+<div class="glyph">খ</div>
+<div class="glyph">গ</div>
+<div class="glyph">ঘ</div>
+<div class="glyph">চ</div>
+<div class="glyph">ছ</div>
+
+</div>
+
+</div>
+
+<!-- RIGHT SIDE -->
+
+<div>
+
+<div class="card designer">
+
+<img src="https://i.pravatar.cc/150?img=12">
+
+<h3>কাজী হাসানুল বান্না</h3>
+
+<p>বাংলা ফন্ট ডিজাইনার</p>
+
+<p>লোগো, পোস্টার ও গ্রাফিক ডিজাইনের জন্য উপযুক্ত একটি ইউনিক বাংলা ফন্ট।</p>
+
+</div>
+
+<div class="card download">
+
+<a class="download-btn" href="#">ডাউনলোড</a>
+
+<div class="counter">
+Downloaded <span id="count">1250</span> times
+</div>
+
+<button style="margin-top:12px;" onclick="toggleEmbed()">Embed</button>
+
+<div class="embed-box" id="embedBox">
+
+<div class="embed-line">
+
+<code id="code1">
+&lt;link href="HasanRongdhonu.css" rel="stylesheet"&gt;
+</code>
+
+<button class="copy" onclick="copyCode('code1',this)">Copy</button>
+
+</div>
+
+<div class="embed-line">
+
+<code id="code2">
+font-family:'HasanRongdhonu', sans-serif;
+</code>
+
+<button class="copy" onclick="copyCode('code2',this)">Copy</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const preview=document.getElementById("preview")
+
+size.oninput=e=>preview.style.fontSize=e.target.value+"px"
+spacing.oninput=e=>preview.style.letterSpacing=e.target.value+"px"
+weight.oninput=e=>preview.style.fontWeight=e.target.value
+lineheight.oninput=e=>preview.style.lineHeight=e.target.value
+
+function sample1(){
+preview.value="আমার সোনার বাংলা, আমি তোমায় ভালোবাসি।"
+}
+
+function sample2(){
+preview.value="হৃদয়ের চঞ্চলতা বন্ধে ব্রতী হলে জীবন পরিপূর্ণ হবে।"
+}
+
+function copyText(){
+preview.select()
+document.execCommand("copy")
+}
+
+function clearText(){
+preview.value=""
+}
+
+function toggleGlyph(){
+let g=document.getElementById("glyphs")
+g.style.display=g.style.display==="grid"?"none":"grid"
+}
+
+function toggleNight(){
+document.body.classList.toggle("dark")
+}
+
+function toggleEmbed(){
+let e=document.getElementById("embedBox")
+e.style.display=e.style.display==="block"?"none":"block"
+}
+
+function copyCode(id,btn){
+
+let text=document.getElementById(id).innerText
+
+navigator.clipboard.writeText(text)
+
+btn.innerHTML="✔"
+
+setTimeout(()=>{
+btn.innerHTML="Copy"
+},1500)
+
+}
+
+</script>
+
+</body>
+</html>
