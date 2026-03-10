@@ -17,7 +17,7 @@ This repo contains a template to host fonts and serve them as a CDN via jsDelivr
 woff2_compress MyFont.ttf
 
 # Or create a subset with fonttools (pyftsubset) to reduce size
-pyftsubset MyFont.ttf --output-file=MyFont-subset.woff2 --flavor=woff2 --unicodes=U+0020-007E --layout-features='*' --no-hinting
+pyftsubset MyFont.ttf --output-file=MyFont-sBanglaHaraf  --flavor=woff2 --unicodes=U+0020-007E --layout-features='*' --no-hinting
 ```
 
 3. Reference the CSS from the CDN (jsDelivr):
@@ -36,4 +36,4 @@ Replace `@latest` with `@v1.0.0` or a commit SHA in the jsDelivr URL to avoid ca
 - If you host elsewhere (S3, CloudFront, Cloudflare), ensure `Access-Control-Allow-Origin` and `Content-Type` are set correctly.
 
 ## License & legal
-Visit <a href="https://banglaharaf.com">BanglaHaraf</a> for Licence. 
+Visit <a href="https://banglaharaf.com">BanglaHaraf Font Foundry</a> for Licence. 
