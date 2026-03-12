@@ -23,10 +23,38 @@
         src: url(https://cdn.jsdelivr.net/gh/subharoy7492/FontFace/fonts/BH_Jhorapalok_Unicode.woff2) format('woff2'); font-display: swap;
  }
 @font-face {
+        font-family: 'HatekhariFill';
+        src: url(https://cdn.jsdelivr.net/gh/subharoy7492/FontFace/fonts/BH_Hatekhari_Line_Unicode.woff2) format('woff2'); font-display: swap;
+ }
+@font-face {
+        font-family: 'HatekhariDot';
+        src: url(https://cdn.jsdelivr.net/gh/subharoy7492/FontFace/fonts/BH_Hatekhari_Dotted_Unicode.woff2) format('woff2'); font-display: swap;
+ }
+@font-face {
+        font-family: 'Aparajito';
+        src: url(https://cdn.jsdelivr.net/gh/subharoy7492/FontFace/fonts/BH_Aparajito_Unicode.woff2) format('woff2'); font-display: swap;
+ }
+@font-face {
+        font-family: 'Kalikalam';
+        src: url(https://cdn.jsdelivr.net/gh/subharoy7492/FontFace/fonts/BH-Kali-Kalam-Unicode.woff2) format('woff2'); font-display: swap;
+ }
+@font-face {
+        font-family: 'Bornoporichay';
+        src: url(https://cdn.jsdelivr.net/gh/subharoy7492/FontFace/fonts/Bornoporichay.woff2) format('woff2'); font-display: swap;
+ }
+@font-face {
         font-family: 'ShamimAparajeyo';
         src: url(https://cdn.jsdelivr.net/gh/subharoy7492/FontFace/fonts/BH_Shamim_Oporajeyo_Unicode.woff2) format('woff2'); font-display: swap;
  }
 @font-face {
         font-family: 'ShamimAparajeyoRough';
         src: url(https://cdn.jsdelivr.net/gh/subharoy7492/FontFace/fonts/BH_Shamim_Oporajeyo_Rough_Unicode.woff2) format('woff2'); font-display: swap;
+ }
+@font-face {
+        font-family: 'ShamimHostolipi';
+        src: url(https://cdn.jsdelivr.net/gh/subharoy7492/FontFace/fonts/BH_Shamim_Hostolipi_Unicode.woff2) format('woff2'); font-display: swap;
+ }
+@font-face {
+        font-family: 'NayanAlo';
+        src: url(https://cdn.jsdelivr.net/gh/subharoy7492/FontFace/fonts/BH_Nayan_Aalo_Unicode.woff2) format('woff2'); font-display: swap;
  }
