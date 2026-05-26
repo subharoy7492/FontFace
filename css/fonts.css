@@ -58,7 +58,13 @@
         font-family: 'NayanAlo';
         src: url(https://cdn.jsdelivr.net/gh/subharoy7492/FontFace/fonts/BH_Nayan_Aalo_Unicode.woff2) format('woff2'); font-display: swap;
  }
+
 @font-face {
         font-family: 'Padmabahar';
         src: url(https://cdn.jsdelivr.net/gh/subharoy7492/FontFace/fonts/Padmabahar.woff2) format('woff2'); font-display: swap;
+}
+
+@font-face {
+        font-family: 'Nasirnagar';
+        src: url(https://cdn.jsdelivr.net/gh/subharoy7492/FontFace/fonts/Nasirnagar.woff2) format('woff2'); font-display: swap;
 }
