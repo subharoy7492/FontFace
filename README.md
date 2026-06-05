@@ -1,6 +1,6 @@
 # FontFace — CDN template
 
-This repo contains a template to host fonts and serve them as a CDN via jsDelivr. Add font files into /fonts/ and use the provided CSS at /css/fonts.css.
+This repo contains a font-face template to host free bangla fonts developed by Bangla Haraf Font Foundry and serve them as a CDN via jsDelivr. Add font files into /fonts/ and use the provided CSS at /css/fonts.css.
 
 ## Quick start
 
