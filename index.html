@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="bn" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>বর্ণবীথি - Modern Bengali Font Platform</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts for Bengali Layout & Standard Sanskrit/Bengali Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@100..800&family=Atma:wght@300..700&family=Baloo+Da+2:wght@400..800&family=Galada&family=Hind+Siliguri:wght@300..700&family=Mina:wght@400;700&family=Noto+Sans+Bengali:wght@100..900&family=Noto+Serif+Bengali:wght@100..900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fff1f2',
+                            100: '#ffe4e6',
+                            200: '#fecdd3',
+                            500: '#f43f5e', // beautiful crimson rose
+                            600: '#e11d48',
+                            700: '#be123c',
+                            950: '#4c0519',
+                        },
+                        darkBg: '#0b0f19',
+                        darkCard: '#1e293b'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans Bengali', 'sans-serif'],
+                        anek: ['Anek Bangla', 'sans-serif'],
+                        atma: ['Atma', 'system-ui'],
+                        baloo: ['Baloo Da 2', 'sans-serif'],
+                        galada: ['Galada', 'cursive'],
+                        hind: ['Hind Siliguri', 'sans-serif'],
+                        mina: ['Mina', 'sans-serif'],
+                        notosans: ['Noto Sans Bengali', 'sans-serif'],
+                        notoserif: ['Noto Serif Bengali', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .dark .glassmorphism {
+            background: rgba(15, 23, 42, 0.85);
+        }
+        
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 9999px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #475569;
+        }
+        
+        /* Font styles targeting our imported fonts */
+        .font-style-anek { font-family: 'Anek Bangla', sans-serif; }
+        .font-style-atma { font-family: 'Atma', cursive; }
+        .font-style-baloo { font-family: 'Baloo Da 2', sans-serif; }
+        .font-style-galada { font-family: 'Galada', cursive; }
+        .font-style-hind { font-family: 'Hind Siliguri', sans-serif; }
+        .font-style-mina { font-family: 'Mina', sans-serif; }
+        .font-style-notosans { font-family: 'Noto Sans Bengali', sans-serif; }
+        .font-style-notoserif { font-family: 'Noto Serif Bengali', serif; }
+        
+        /* Fallback system fonts */
+        .font-style-solaiman { font-family: 'SolaimanLipi', 'Noto Sans Bengali', sans-serif; }
+        .font-style-kalpurush { font-family: 'Kalpurush', 'Noto Sans Bengali', sans-serif; }
+        .font-style-siyam { font-family: 'Siyam Rupali', 'Noto Sans Bengali', sans-serif; }
+        .font-style-charukola { font-family: 'Charukola', 'Noto Serif Bengali', serif; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+        .floating-element {
+            animation: float 4s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-[#080c14] dark:text-slate-100 min-h-screen transition-colors duration-300 font-sans flex flex-col justify-between">
+
+    <!-- NAVIGATION BAR -->
+    <header class="sticky top-0 z-40 w-full border-b border-slate-200 dark:border-slate-800 glassmorphism transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+            
+            <!-- Logo Brand -->
+            <div class="flex items-center gap-3 cursor-pointer shrink-0" onclick="navigateToPage('home')">
+                <div class="w-10 h-10 bg-gradient-to-tr from-brand-600 to-amber-500 rounded-xl flex items-center justify-center text-white font-extrabold text-xl shadow-lg shadow-brand-500/20">
+                    অ
+                </div>
+                <div class="hidden sm:block">
+                    <h1 class="text-xl font-bold tracking-tight bg-gradient-to-r from-brand-600 to-amber-600 bg-clip-text text-transparent dark:from-brand-500 dark:to-amber-400">বর্ণবীথি</h1>
+                    <p class="text-[10px] text-slate-500 dark:text-slate-400 font-medium tracking-widest uppercase">Bengali Typography Hub</p>
+                </div>
+            </div>
+
+            <!-- Global Live Header Search -->
+            <div class="relative max-w-xs md:max-w-md w-full">
+                <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"><i class="fa-solid fa-magnifying-glass text-xs"></i></span>
+                <input type="text" id="headerSearchInput" oninput="handleGlobalHeaderSearch(this.value)" placeholder="যেকোনো পেজ থেকে ফন্ট খুঁজুন..." class="w-full pl-9 pr-4 py-2 text-xs font-semibold rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500 transition text-slate-900 dark:text-slate-100">
+            </div>
+
+            <!-- Nav Pages Router Items -->
+            <nav class="hidden md:flex items-center gap-6 text-sm font-semibold shrink-0">
+                <button onclick="navigateToPage('home')" id="nav-home" class="nav-btn text-brand-600 dark:text-brand-400 flex items-center gap-1.5 transition-colors">
+                    <i class="fa-solid fa-house text-xs"></i> হোম
+                </button>
+                <button onclick="navigateToPage('search')" id="nav-search" class="nav-btn text-slate-600 dark:text-slate-300 hover:text-brand-500 dark:hover:text-brand-400 flex items-center gap-1.5 transition-colors">
+                    <i class="fa-solid fa-font text-xs"></i> ফন্ট সার্চ
+                </button>
+                <button onclick="navigateToPage('compare')" id="nav-compare" class="nav-btn text-slate-600 dark:text-slate-300 hover:text-brand-500 dark:hover:text-brand-400 flex items-center gap-1.5 transition-colors">
+                    <i class="fa-solid fa-code-compare text-xs"></i> ফন্ট তুলনা
+                </button>
+            </nav>
+
+            <!-- Actions (Theme Toggle & Live Total Downloads Counter) -->
+            <div class="flex items-center gap-3 shrink-0">
+                <!-- Theme toggle button -->
+                <button id="themeToggleBtn" onclick="toggleTheme()" class="w-10 h-10 rounded-xl border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all" title="Toggle Light/Dark Mode">
+                    <i class="fa-regular fa-sun text-lg dark:hidden"></i>
+                    <i class="fa-regular fa-moon text-lg hidden dark:block"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MOBILE SUB-NAVIGATION BAR -->
+    <div class="md:hidden sticky top-16 z-40 bg-white/90 dark:bg-slate-900/90 border-b border-slate-200 dark:border-slate-800 flex justify-around py-3 text-xs font-bold shadow-sm">
+        <button onclick="navigateToPage('home')" id="mobile-nav-home" class="flex flex-col items-center gap-1 text-brand-600">
+            <i class="fa-solid fa-house"></i>
+            <span>হোম</span>
+        </button>
+        <button onclick="navigateToPage('search')" id="mobile-nav-search" class="flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400">
+            <i class="fa-solid fa-font"></i>
+            <span>ফন্ট সার্চ</span>
+        </button>
+        <button onclick="navigateToPage('compare')" id="mobile-nav-compare" class="flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400">
+            <i class="fa-solid fa-code-compare"></i>
+            <span>ফন্ট তুলনা</span>
+        </button>
+    </div>
+
+    <!-- MAIN BODY ROUTER -->
+    <main class="flex-grow">
+
+        <!-- ================= PAGE 1: HOME LANDING PAGE ================= -->
+        <div id="page-home" class="page-view animate-fadeIn">
+            <!-- HERO HERO REGION -->
+            <section class="relative overflow-hidden pt-16 pb-20 border-b border-slate-100 dark:border-slate-900 bg-gradient-to-b from-white to-slate-50/50 dark:from-[#090d16] dark:to-[#080c14]">
+                <!-- Background decorative elements -->
+                <div class="absolute inset-0 z-0 pointer-events-none opacity-40">
+                    <div class="absolute -top-40 left-1/4 w-96 h-96 bg-brand-400 rounded-full mix-blend-multiply filter blur-[128px]"></div>
+                    <div class="absolute top-10 right-1/4 w-80 h-80 bg-amber-400 rounded-full mix-blend-multiply filter blur-[96px]"></div>
+                </div>
+
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+                    <span class="inline-flex items-center gap-1.5 py-1.5 px-3 rounded-full text-xs font-semibold bg-brand-100 text-brand-700 dark:bg-brand-950/40 dark:text-brand-300 mb-6">
+                        <i class="fa-solid fa-sparkles"></i> প্রফেশনাল ও আধুনিক বাংলা ফন্টের সংগ্রহশালা
+                    </span>
+                    
+                    <h2 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-slate-950 dark:text-white mb-6 leading-tight max-w-4xl mx-auto">
+                        বাংলার সৌন্দর্য ছড়িয়ে দিন <span class="bg-gradient-to-r from-brand-600 to-amber-500 bg-clip-text text-transparent dark:from-brand-500 dark:to-amber-400">ডিজিটাল টাইপোগ্রাফিতে</span>
+                    </h2>
+                    
+                    <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed font-light">
+                        নিখুঁত প্রদর্শন ও প্রফেশনাল ডিজাইনে ব্যবহারের জন্য বাছাইকৃত আধুনিক বাংলা ওপেন-সোর্স ফন্ট ডাউনলোড, কাস্টমাইজ ও সরাসরি ব্রাউজারে পরীক্ষা করুন।
+                    </p>
+
+                    <!-- Large Landing Search Box Portal -->
+                    <div class="max-w-2xl mx-auto mb-12">
+                        <div class="bg-white dark:bg-slate-800 p-2 rounded-2xl shadow-xl border border-slate-100 dark:border-slate-700/80 flex items-center gap-2">
+                            <div class="relative flex-grow">
+                                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"><i class="fa-solid fa-magnifying-glass text-lg"></i></span>
+                                <input type="text" id="landingSearchInput" onkeydown="if(event.key === 'Enter') triggerLandingSearch()" placeholder="হাজারো ফন্টের মাঝে আপনার পছন্দের ফন্টটি খুঁজুন..." class="w-full bg-transparent pl-12 pr-4 py-4 rounded-xl text-base font-semibold focus:outline-none text-slate-900 dark:text-slate-100">
+                            </div>
+                            <button onclick="triggerLandingSearch()" class="bg-brand-500 hover:bg-brand-600 text-white font-bold px-8 py-4 rounded-xl transition duration-300 shadow-md shadow-brand-500/20 shrink-0">
+                                খুঁজুন
+                            </button>
+                        </div>
+                        <p class="text-xs text-slate-400 dark:text-slate-500 mt-3">যেমন: <span class="underline cursor-pointer hover:text-brand-500" onclick="searchBySuggestion('Noto')">Noto</span>, <span class="underline cursor-pointer hover:text-brand-500" onclick="searchBySuggestion('Siliguri')">Siliguri</span>, <span class="underline cursor-pointer hover:text-brand-500" onclick="searchBySuggestion('Atma')">Atma</span>, <span class="underline cursor-pointer hover:text-brand-500" onclick="searchBySuggestion('Serif')">Serif</span></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- REAL-TIME PLATFORM STATISTICS BAR (FRONT PAGE COUNT BAR) -->
+            <section class="py-10 bg-white dark:bg-slate-900/60 border-y border-slate-200/50 dark:border-slate-800/80">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                        <div class="p-4 bg-slate-50 dark:bg-slate-800/40 rounded-2xl border border-slate-100 dark:border-slate-800">
+                            <div class="w-10 h-10 rounded-xl bg-brand-100 dark:bg-brand-950/50 text-brand-600 dark:text-brand-400 flex items-center justify-center mx-auto mb-2 text-lg"><i class="fa-solid fa-font"></i></div>
+                            <span id="statFontsCount" class="block text-2xl font-black text-slate-900 dark:text-white">12</span>
+                            <span class="text-xs text-slate-400 dark:text-slate-500 font-semibold tracking-wider">উপলব্ধ ওপেন সোর্স ফন্ট</span>
+                        </div>
+                        <div class="p-4 bg-slate-50 dark:bg-slate-800/40 rounded-2xl border border-slate-100 dark:border-slate-800">
+                            <div class="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-950/50 text-amber-600 dark:text-amber-400 flex items-center justify-center mx-auto mb-2 text-lg"><i class="fa-solid fa-cloud-arrow-down"></i></div>
+                            <span id="statDownloadsCount" class="block text-2xl font-black text-slate-900 dark:text-white">38,552</span>
+                            <span class="text-xs text-slate-400 dark:text-slate-500 font-semibold tracking-wider">সর্বমোট ফন্ট ডাউনলোড</span>
+                        </div>
+                        <div class="p-4 bg-slate-50 dark:bg-slate-800/40 rounded-2xl border border-slate-100 dark:border-slate-800">
+                            <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 flex items-center justify-center mx-auto mb-2 text-lg"><i class="fa-solid fa-palette"></i></div>
+                            <span class="block text-2xl font-black text-slate-900 dark:text-white">8+</span>
+                            <span class="text-xs text-slate-400 dark:text-slate-500 font-semibold tracking-wider">ফন্ট টাইপ ডিজাইনার</span>
+                        </div>
+                        <div class="p-4 bg-slate-50 dark:bg-slate-800/40 rounded-2xl border border-slate-100 dark:border-slate-800">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mx-auto mb-2 text-lg"><i class="fa-solid fa-shapes"></i></div>
+                            <span class="block text-2xl font-black text-slate-900 dark:text-white">4</span>
+                            <span class="text-xs text-slate-400 dark:text-slate-500 font-semibold tracking-wider">ডিজাইন স্টাইল ক্যাটাগরি</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- BROWSE BY CATEGORIES QUICK NAV -->
+            <section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10">
+                    <h3 class="text-2xl font-extrabold text-slate-900 dark:text-white">ক্যাটাগরি অনুযায়ী ব্রাউজ করুন</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">আপনার পছন্দের ডিজাইনের ধরন অনুযায়ী ফন্ট ফিল্টার করুন</p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div onclick="routeToCategory('All')" class="cursor-pointer group p-6 bg-white dark:bg-slate-800/60 rounded-2xl border border-slate-100 dark:border-slate-800 hover:border-brand-500 dark:hover:border-brand-500 transition-all text-center">
+                        <div class="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 flex items-center justify-center mx-auto mb-4 group-hover:bg-brand-500 group-hover:text-white transition-all text-xl font-bold">অ</div>
+                        <h4 class="font-bold text-sm text-slate-800 dark:text-slate-200">সব ফন্ট</h4>
+                    </div>
+                    <div onclick="routeToCategory('Serif')" class="cursor-pointer group p-6 bg-white dark:bg-slate-800/60 rounded-2xl border border-slate-100 dark:border-slate-800 hover:border-brand-500 dark:hover:border-brand-500 transition-all text-center">
+                        <div class="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 flex items-center justify-center mx-auto mb-4 group-hover:bg-brand-500 group-hover:text-white transition-all text-lg font-serif">A</div>
+                        <h4 class="font-bold text-sm text-slate-800 dark:text-slate-200">সেরিফ (Serif)</h4>
+                    </div>
+                    <div onclick="routeToCategory('Sans-serif')" class="cursor-pointer group p-6 bg-white dark:bg-slate-800/60 rounded-2xl border border-slate-100 dark:border-slate-800 hover:border-brand-500 dark:hover:border-brand-500 transition-all text-center">
+                        <div class="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 flex items-center justify-center mx-auto mb-4 group-hover:bg-brand-500 group-hover:text-white transition-all text-lg font-sans">A</div>
+                        <h4 class="font-bold text-sm text-slate-800 dark:text-slate-200">সান্স-সেরিফ</h4>
+                    </div>
+                    <div onclick="routeToCategory('Cursive')" class="cursor-pointer group p-6 bg-white dark:bg-slate-800/60 rounded-2xl border border-slate-100 dark:border-slate-800 hover:border-brand-500 dark:hover:border-brand-500 transition-all text-center">
+                        <div class="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 flex items-center justify-center mx-auto mb-4 group-hover:bg-brand-500 group-hover:text-white transition-all text-lg font-galada">ক</div>
+                        <h4 class="font-bold text-sm text-slate-800 dark:text-slate-200">হস্তলিপি ও কার্সিভ</h4>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RECENTLY ADDED FONTS SECTION (FRONT PAGE DYNAMIC GRID) -->
+            <section class="py-16 bg-slate-100/40 dark:bg-[#090d16] border-t border-slate-200/55 dark:border-slate-800/70">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex items-end justify-between mb-10">
+                        <div>
+                            <span class="text-xs font-black uppercase text-brand-500 tracking-widest block mb-1">সদ্য প্রকাশিত</span>
+                            <h3 class="text-3xl font-extrabold text-slate-900 dark:text-white">সম্প্রতি যোগ করা ফন্টসমূহ</h3>
+                            <p class="text-xs text-slate-400 mt-0.5">আমাদের প্ল্যাটফর্মে সদ্য রিলিজ হওয়া চমৎকার ৩টি ফন্ট ট্রাই করুন</p>
+                        </div>
+                        <button onclick="navigateToPage('search')" class="text-xs font-bold text-brand-500 hover:text-brand-600 flex items-center gap-1">
+                            সব ফন্ট দেখুন <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- Dynamic Recent Fonts Container -->
+                    <div id="recentFontsGrid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- Content will be injected dynamically on load by sorting the JSON schema -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- PLATFORM FEATURES BRIEF -->
+            <section class="bg-slate-100 dark:bg-slate-900/40 py-16">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="flex items-start gap-4">
+                            <span class="p-3.5 bg-brand-100 dark:bg-brand-950 text-brand-600 rounded-2xl"><i class="fa-solid fa-bolt text-lg"></i></span>
+                            <div>
+                                <h4 class="font-bold text-base text-slate-900 dark:text-white">রিয়েল-টাইম রেন্ডারিং</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">যেকোনো বাংলা কাস্টম টেক্সট লিখে সাথে সাথে সমস্ত ফন্ট কেমন দেখাবে তা পরীক্ষা করে সিদ্ধান্ত নিন।</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <span class="p-3.5 bg-brand-100 dark:bg-brand-950 text-brand-600 rounded-2xl"><i class="fa-solid fa-code-compare text-lg"></i></span>
+                            <div>
+                                <h4 class="font-bold text-base text-slate-900 dark:text-white">পাশাপাশি তুলনা</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">আমাদের ফন্ট তুলনা ইঞ্জিনের সাহায্যে যেকোনো দুটি ফন্ট পাশাপাশি রেখে টাইপোগ্রাফির সূক্ষ্মতা বিচার করুন।</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <span class="p-3.5 bg-brand-100 dark:bg-brand-950 text-brand-600 rounded-2xl"><i class="fa-solid fa-circle-nodes text-lg"></i></span>
+                            <div>
+                                <h4 class="font-bold text-base text-slate-900 dark:text-white">কোড ইন্টিগ্রেশন জেনারেটর</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">যেকোনো ফন্টের জন্য এক ক্লিকে এইচটিএমএল (HTML) ও সিএসএস (CSS) কোড কপি করে আপনার ওয়েবসাইটে যোগ করুন।</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
+        <!-- ================= PAGE 2: FONT SEARCH & RESULTS PAGE ================= -->
+        <div id="page-search" class="page-view hidden py-8">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- REAL-TIME PLATFORM STATISTICS BAR (BEFORE SEARCH ENGINE BAR) -->
+                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-6 bg-slate-100/50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800/80 rounded-2xl p-4">
+                    <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 rounded-lg bg-brand-100 dark:bg-brand-950/50 text-brand-600 dark:text-brand-400 flex items-center justify-center text-sm font-bold">
+                            <i class="fa-solid fa-font"></i>
+                        </div>
+                        <div>
+                            <p class="text-[10px] text-slate-400 dark:text-slate-500 uppercase tracking-widest font-black leading-none">মোট উপলব্ধ ফন্ট</p>
+                            <h4 class="text-sm font-extrabold text-slate-900 dark:text-slate-100"><span id="searchTotalFontsCounter">0</span> টি ফন্ট</h4>
+                        </div>
+                    </div>
+                    <div class="hidden sm:block h-8 w-px bg-slate-200 dark:bg-slate-800"></div>
+                    <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 rounded-lg bg-amber-100 dark:bg-amber-950/50 text-amber-600 dark:text-amber-400 flex items-center justify-center text-sm font-bold">
+                            <i class="fa-solid fa-cloud-arrow-down"></i>
+                        </div>
+                        <div>
+                            <p class="text-[10px] text-slate-400 dark:text-slate-500 uppercase tracking-widest font-black leading-none">সর্বমোট ডাউনলোড সংখ্যা</p>
+                            <h4 class="text-sm font-extrabold text-slate-900 dark:text-slate-100"><span id="searchTotalDownloadsCounter">0</span> বারের বেশি</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HEADER SEARCH FEEDBACK -->
+                <div class="mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-6">
+                    <div>
+                        <h2 class="text-2xl font-black text-slate-950 dark:text-white flex items-center gap-2">
+                            <i class="fa-solid fa-magnifying-glass text-brand-500 text-lg"></i> ফন্ট অনুসন্ধান ডিরেক্টরি
+                        </h2>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                            সরাসরি সার্চ টার্ম বা বামে ক্যাটাগরি ব্যবহার করে নিখুঁত ফন্ট নির্বাচন করুন।
+                        </p>
+                    </div>
+                    <!-- ACTIVE QUERY METRICS -->
+                    <div id="activeQueryBadge" class="hidden px-4 py-2 bg-brand-50 dark:bg-brand-950/40 border border-brand-100 dark:border-brand-900/50 rounded-xl text-xs font-semibold text-brand-700 dark:text-brand-300">
+                        অনুসন্ধান করা শব্দ: <span id="activeSearchWord" class="font-bold underline">None</span> 
+                        <button onclick="clearSearchFilter()" class="ml-2 text-slate-400 hover:text-brand-600"><i class="fa-solid fa-circle-xmark"></i></button>
+                    </div>
+                </div>
+
+                <!-- DYNAMIC CONTROLS & TESTER BAR FOR SEARCH RESULTS -->
+                <div class="bg-white dark:bg-slate-800/80 p-4 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm mb-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
+                        <!-- Custom text tester input -->
+                        <div class="lg:col-span-5 relative flex items-center gap-2">
+                            <div class="relative w-full">
+                                <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"><i class="fa-solid fa-pen-fancy"></i></span>
+                                <input type="text" id="globalPreviewText" oninput="updateAllPreviews(this.value)" placeholder="এখানে কাস্টম বাংলা টেক্সট বা ডেমো লিখুন..." value="আমার সোনার বাংলা, আমি তোমায় ভালোবাসি।" class="w-full pl-10 pr-12 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white/70 dark:bg-slate-800/70 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none text-sm font-semibold transition-all text-slate-900 dark:text-slate-100">
+                                <!-- Audio sound toggle -->
+                                <button id="soundToggleBtn" onclick="toggleSound()" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-brand-500 transition-colors" title="Toggle Typewriter Sounds">
+                                    <i class="fa-solid fa-volume-high text-brand-500"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Font size slider control -->
+                        <div class="lg:col-span-3 flex items-center gap-3">
+                            <span class="text-xs font-semibold text-slate-500 dark:text-slate-400 whitespace-nowrap"><i class="fa-solid fa-text-height"></i> সাইজ: <span id="fontSizeVal">36</span>px</span>
+                            <input type="range" id="globalFontSize" min="16" max="96" value="36" oninput="updateAllSizes(this.value)" class="w-full accent-brand-500 h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg cursor-pointer">
+                        </div>
+
+                        <!-- Alignment & Category Filter controls -->
+                        <div class="lg:col-span-4 flex items-center gap-2 justify-end">
+                            <!-- Preset select list -->
+                            <select onchange="applyPresetText(this.value)" class="bg-white/70 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-3 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-brand-500 text-slate-800 dark:text-slate-200">
+                                <option value="আমার সোনার বাংলা, আমি তোমায় ভালোবাসি।">সোনার বাংলা</option>
+                                <option value="ক খ গ ঘ ঙ চ ছ জ ঝ ঞ ট ঠ ড ঢ ণ ত থ দ ধ ন প ফ ব ভ ম য র ল শ ষ স হ">বর্ণমালা (অ-হ)</option>
+                                <option value="০ ১ ২ ৩ ৪ ৫ ৬ ৭ ৮ ৯">বাংলা সংখ্যা (০-৯)</option>
+                                <option value="সৃজনশীলতা হলো বুদ্ধিদীপ্ত খেলার বহিঃপ্রকাশ।">সৃজনশীলতা</option>
+                                <option value="আজ রবিবার, পহেলা বৈশাখ। চারদিকে উৎসবের আমেজ।">উৎসবের আমেজ</option>
+                            </select>
+
+                            <!-- Text alignment buttons -->
+                            <div class="flex border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden bg-white/70 dark:bg-slate-800/70">
+                                <button onclick="changeAlignment('left')" class="align-btn px-3 py-3 text-xs bg-slate-100 dark:bg-slate-800 text-brand-600 font-bold" title="Left Align"><i class="fa-solid fa-align-left"></i></button>
+                                <button onclick="changeAlignment('center')" class="align-btn px-3 py-3 text-xs hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="Center Align"><i class="fa-solid fa-align-center"></i></button>
+                                <button onclick="changeAlignment('right')" class="align-btn px-3 py-3 text-xs hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="Right Align"><i class="fa-solid fa-align-right"></i></button>
+                            </div>
+
+                            <!-- Reset settings -->
+                            <button onclick="resetGlobalControls()" class="px-3.5 py-3 bg-slate-100 dark:bg-slate-800 hover:bg-brand-500 hover:text-white dark:hover:bg-brand-500 text-slate-600 dark:text-slate-300 rounded-xl text-xs font-bold transition-all" title="Reset Filters">
+                                <i class="fa-solid fa-arrows-rotate"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CATEGORY SEGMENT TABS inside Search -->
+                <div class="flex flex-wrap gap-2 mb-8 border-b border-slate-100 dark:border-slate-900 pb-4">
+                    <button id="cat-All" onclick="filterCategory('All')" class="cat-tab px-4 py-2.5 rounded-xl text-xs font-bold bg-brand-600 text-white shadow-md shadow-brand-500/10 transition">সকল ক্যাটাগরি</button>
+                    <button id="cat-Serif" onclick="filterCategory('Serif')" class="cat-tab px-4 py-2.5 rounded-xl text-xs font-bold bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-brand-500 transition">সেরিফ (Serif)</button>
+                    <button id="cat-Sans-serif" onclick="filterCategory('Sans-serif')" class="cat-tab px-4 py-2.5 rounded-xl text-xs font-bold bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-brand-500 transition">সান্স-সেরিফ (Sans-Serif)</button>
+                    <button id="cat-Display" onclick="filterCategory('Display')" class="cat-tab px-4 py-2.5 rounded-xl text-xs font-bold bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-brand-500 transition">ডিসপ্লে (Display)</button>
+                    <button id="cat-Cursive" onclick="filterCategory('Cursive')" class="cat-tab px-4 py-2.5 rounded-xl text-xs font-bold bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-brand-500 transition">হস্তলিপি ও কার্সিভ</button>
+                </div>
+
+                <!-- FONTS CARDS GRID (WHERE RESULTS GO) -->
+                <div id="fontsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Cards will be dynamically generated by JS using pagination/infinite scroll -->
+                </div>
+
+                <!-- INFINITE SCROLL / LOAD MORE BUTTON SYSTEM -->
+                <div id="loadMoreSection" class="mt-12 text-center pb-12">
+                    <button id="loadMoreBtn" onclick="handleLoadMore()" class="inline-flex items-center gap-2 px-8 py-4 bg-slate-900 hover:bg-brand-600 dark:bg-slate-800 dark:hover:bg-brand-500 text-white font-bold rounded-xl text-xs transition shadow-lg shadow-brand-500/10">
+                        <span id="loadBtnText">আরো ফন্ট লোড করুন</span>
+                        <i id="loadBtnIcon" class="fa-solid fa-chevron-down text-[10px]"></i>
+                    </button>
+                </div>
+
+                <!-- NO RESULTS VIEW -->
+                <div id="noResultsAlert" class="hidden text-center py-24 bg-white dark:bg-slate-800/35 border border-slate-200/50 dark:border-slate-800 rounded-[32px]">
+                    <div class="text-5xl mb-4 text-slate-300 dark:text-slate-600"><i class="fa-solid fa-magnifying-glass-minus"></i></div>
+                    <h3 class="font-extrabold text-lg">আপনার অনুসন্ধানের সাথে কোনো ফন্ট মেলেনি</h3>
+                    <p class="text-xs text-slate-400 mt-1">দয়া করে কি-ওয়ার্ড পরিবর্তন করে আবার চেষ্টা করুন।</p>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- ================= PAGE 3: FONT COMPARE ENGINE ================= -->
+        <div id="page-compare" class="page-view hidden py-16 animate-fadeIn">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="text-xs font-bold text-brand-600 dark:text-brand-400 uppercase tracking-widest bg-brand-50 dark:bg-brand-950/35 px-3 py-1.5 rounded-full">ফন্ট কম্পেয়ার ইঞ্জিন</span>
+                    <h2 class="text-4xl font-black text-slate-900 dark:text-white mt-4">পাশাপাশি ফন্ট তুলনা করুন</h2>
+                    <p class="text-slate-500 dark:text-slate-400 mt-2 text-sm font-medium">একই অনুচ্ছেদ বিভিন্ন ফন্টে কেমন দেখাবে তা তাৎক্ষণিকভাবে যাচাই করুন।</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Font A Column -->
+                    <div class="bg-white dark:bg-slate-800/80 p-8 rounded-3xl border border-slate-200/60 dark:border-slate-700 shadow-xl">
+                        <div class="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-700 mb-4">
+                            <span class="font-bold text-slate-800 dark:text-white flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-brand-500"></span> ফন্ট ক (Font A)
+                            </span>
+                            <select id="compareSelectA" onchange="updateCompareText()" class="bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-xl px-3 py-2.5 text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-brand-500 text-slate-800 dark:text-slate-200">
+                                <option value="font-style-notosans" selected>Noto Sans Bengali</option>
+                                <option value="font-style-notoserif">Noto Serif Bengali</option>
+                                <option value="font-style-hind">Hind Siliguri</option>
+                                <option value="font-style-anek">Anek Bangla</option>
+                                <option value="font-style-mina">Mina</option>
+                                <option value="font-style-atma">Atma</option>
+                                <option value="font-style-galada">Galada</option>
+                            </select>
+                        </div>
+                        <textarea id="compareTextareaA" oninput="syncCompareText(this.value, 'B')" class="w-full h-64 bg-transparent border-0 focus:ring-0 resize-none font-style-notosans text-xl text-slate-800 dark:text-slate-200 leading-relaxed outline-none" placeholder="এখানে ফন্ট টেস্ট করার জন্য লিখুন...">আমাদের মাতৃভাষা বাংলা। রবীন্দ্রনাথ ঠাকুর, কাজী নজরুল ইসলাম, জীবনানন্দ দাশের সাহিত্য এই ভাষাকে সমৃদ্ধ করেছে। আধুনিক বাংলা ডিজাইনেও তাই সঠিক ফন্টের প্রয়োজনীয়তা অপরিসীম।</textarea>
+                    </div>
+
+                    <!-- Font B Column -->
+                    <div class="bg-white dark:bg-slate-800/80 p-8 rounded-3xl border border-slate-200/60 dark:border-slate-700 shadow-xl">
+                        <div class="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-700 mb-4">
+                            <span class="font-bold text-slate-800 dark:text-white flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span> ফন্ট খ (Font B)
+                            </span>
+                            <select id="compareSelectB" onchange="updateCompareText()" class="bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-xl px-3 py-2.5 text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-brand-500 text-slate-800 dark:text-slate-200">
+                                <option value="font-style-notosans">Noto Sans Bengali</option>
+                                <option value="font-style-notoserif" selected>Noto Serif Bengali</option>
+                                <option value="font-style-hind">Hind Siliguri</option>
+                                <option value="font-style-anek">Anek Bangla</option>
+                                <option value="font-style-mina">Mina</option>
+                                <option value="font-style-atma">Atma</option>
+                                <option value="font-style-galada">Galada</option>
+                            </select>
+                        </div>
+                        <textarea id="compareTextareaB" oninput="syncCompareText(this.value, 'A')" class="w-full h-64 bg-transparent border-0 focus:ring-0 resize-none font-style-notoserif text-xl text-slate-800 dark:text-slate-200 leading-relaxed outline-none" placeholder="এখানে ফন্ট টেস্ট করার জন্য লিখুন...">আমাদের মাতৃভাষা বাংলা। রবীন্দ্রনাথ ঠাকুর, কাজী নজরুল ইসলাম, জীবনানন্দ দাশের সাহিত্য এই ভাষাকে সমৃদ্ধ করেছে। আধুনিক বাংলা ডিজাইনেও তাই সঠিক ফন্টের প্রয়োজনীয়তা অপরিসীম।</textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- DETAILED FONT VIEW MODAL (EXAMINER MODE) -->
+    <div id="fontDetailModal" class="fixed inset-0 z-50 hidden bg-slate-900/60 dark:bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-[#0f172a] rounded-[28px] max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl flex flex-col transition-all">
+            <!-- Modal Header -->
+            <div class="p-6 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                <div>
+                    <h2 id="modalFontName" class="text-2xl font-black text-slate-950 dark:text-white">Font Name</h2>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1"><span id="modalFontCategory" class="font-bold text-brand-500">Sans-serif</span> • OFL ওপেন সোর্স লাইসেন্স</p>
+                </div>
+                <button onclick="closeFontDetails()" class="w-10 h-10 rounded-xl bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-300 transition-colors">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Modal Tabs Navigation -->
+            <div class="flex border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/20 text-xs font-bold">
+                <button onclick="switchModalTab('tester')" id="tabBtn-tester" class="modal-tab-btn flex-1 py-3 text-center border-b-2 border-brand-500 text-brand-600 dark:text-brand-400">পরীক্ষাগার (Tester)</button>
+                <button onclick="switchModalTab('glyphs')" id="tabBtn-glyphs" class="modal-tab-btn flex-1 py-3 text-center text-slate-500 hover:text-slate-800 dark:hover:text-slate-300">অক্ষরসমূহ (Glyphs)</button>
+                <button onclick="switchModalTab('license')" id="tabBtn-license" class="modal-tab-btn flex-1 py-3 text-center text-slate-500 hover:text-slate-800 dark:hover:text-slate-300">লাইসেন্স ও কৃতিত্ব</button>
+                <button onclick="switchModalTab('integrate')" id="tabBtn-integrate" class="modal-tab-btn flex-1 py-3 text-center text-slate-500 hover:text-slate-800 dark:hover:text-slate-300">ইন্টিগ্রেশন কোড</button>
+            </div>
+
+            <!-- Modal Content (Scrollable) -->
+            <div class="p-6 overflow-y-auto flex-1">
+                
+                <!-- Tab: Tester Playground -->
+                <div id="modalTabContent-tester" class="modal-tab-pane space-y-6">
+                    <div class="bg-slate-50 dark:bg-slate-800/50 p-6 rounded-2xl min-h-[160px] flex items-center border border-slate-100 dark:border-slate-800">
+                        <!-- Target text container for live style preview -->
+                        <div id="modalPreviewBox" class="w-full text-center outline-none select-all font-style-notosans leading-relaxed" contenteditable="true" style="font-size: 40px;">
+                            এখানে টাইপ করে ফন্টের কার্যকারিতা পরীক্ষা করুন।
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="space-y-2">
+                            <span class="text-xs font-semibold text-slate-500 dark:text-slate-400">ফন্ট সাইজ পরিবর্তন করুন</span>
+                            <div class="flex items-center gap-3 bg-slate-50 dark:bg-slate-800 p-3 rounded-xl border border-slate-100 dark:border-slate-800">
+                                <input type="range" id="modalFontSizeSlider" min="16" max="120" value="40" oninput="updateModalFontSize(this.value)" class="w-full accent-brand-500">
+                                <span class="text-xs font-bold whitespace-nowrap"><span id="modalFontSizeVal">40</span>px</span>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <span class="text-xs font-semibold text-slate-500 dark:text-slate-400">লাইন স্পেসিং (Line Height)</span>
+                            <div class="flex items-center gap-3 bg-slate-50 dark:bg-slate-800 p-3 rounded-xl border border-slate-100 dark:border-slate-800">
+                                <input type="range" id="modalLineHeightSlider" min="1" max="2.5" step="0.1" value="1.5" oninput="updateModalLineHeight(this.value)" class="w-full accent-brand-500">
+                                <span class="text-xs font-bold whitespace-nowrap"><span id="modalLineHeightVal">1.5</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab: Glyphs Layout -->
+                <div id="modalTabContent-glyphs" class="modal-tab-pane hidden space-y-6">
+                    <div class="space-y-4">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">স্বরবর্ণ (Vowels)</h4>
+                        <div id="modalVowelsContainer" class="grid grid-cols-6 sm:grid-cols-11 gap-2 font-bold text-center"></div>
+                    </div>
+                    <div class="space-y-4 pt-4 border-t border-slate-100 dark:border-slate-800">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">কার চিহ্নসমূহ</h4>
+                        <div id="modalKarsContainer" class="grid grid-cols-5 sm:grid-cols-10 gap-2 font-bold text-center"></div>
+                    </div>
+                    <div class="space-y-4 pt-4 border-t border-slate-100 dark:border-slate-800">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">ব্যঞ্জনবর্ণ (Consonants)</h4>
+                        <div id="modalConsonantsContainer" class="grid grid-cols-6 sm:grid-cols-11 gap-2 font-bold text-center"></div>
+                    </div>
+                </div>
+
+                <!-- Tab: License Information -->
+                <div id="modalTabContent-license" class="modal-tab-pane hidden space-y-4 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                    <h3 class="font-bold text-slate-950 dark:text-white text-base">SIL Open Font License (OFL)</h3>
+                    <p>
+                        এই ফন্টটি SIL Open Font License লাইসেন্সের অধীনে নিবন্ধিত। আপনি এই ফন্টটি আপনার ব্যক্তিগত এবং বাণিজ্যিক প্রজেক্টে সম্পূর্ণ ফ্রিতে এবং নিরাপদে ব্যবহার করতে পারবেন।
+                    </p>
+                    <div class="p-4 bg-slate-50 dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-800 space-y-2">
+                        <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> কমার্শিয়াল ও ব্যবসায়িক ডিজাইন কাজে ব্যবহারের অনুমতি আছে।</div>
+                        <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> ওয়েব ফন্ট ইন্টিগ্রেশন এবং কোড ব্যবহারের সম্পূর্ণ সুবিধা।</div>
+                        <div class="flex items-center gap-2"><i class="fa-solid fa-xmark text-red-500"></i> কোনো অবস্থাতেই ফন্ট ফাইল সরাসরি বিক্রয় করা যাবে না।</div>
+                    </div>
+                </div>
+
+                <!-- Tab: Integrate code -->
+                <div id="modalTabContent-integrate" class="modal-tab-pane hidden space-y-4">
+                    <div>
+                        <span class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">১. HTML হেড ট্যাগের ভেতরে যোগ করুন:</span>
+                        <div class="bg-slate-900 text-slate-300 p-4 rounded-xl text-xs font-mono relative">
+                            <pre><code id="integrationCodeHtml">Loading...</code></pre>
+                            <button onclick="copySnippet('integrationCodeHtml')" class="absolute top-3 right-3 bg-slate-800 hover:bg-slate-700 text-white rounded px-2.5 py-1 transition-all font-semibold">Copy</button>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">২. আপনার CSS ফাইলে যোগ করুন:</span>
+                        <div class="bg-slate-900 text-slate-300 p-4 rounded-xl text-xs font-mono relative">
+                            <pre><code id="integrationCodeCss">Loading...</code></pre>
+                            <button onclick="copySnippet('integrationCodeCss')" class="absolute top-3 right-3 bg-slate-800 hover:bg-slate-700 text-white rounded px-2.5 py-1 transition-all font-semibold">Copy</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="p-6 border-t border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/40 flex items-center justify-between">
+                <span class="text-xs font-medium text-slate-400">লাইসেন্স: ওএফএল (OFL)</span>
+                <button id="modalDownloadBtn" onclick="downloadFont('Noto Sans Bengali')" class="bg-brand-500 hover:bg-brand-600 text-white font-bold px-6 py-2.5 rounded-xl text-xs transition duration-300 flex items-center gap-1.5 shadow-md shadow-brand-500/15">
+                    <i class="fa-solid fa-download"></i> ফন্ট ডাউনলোড করুন
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MOCK NOTIFICATION ELEMENT -->
+    <div id="notificationAlert" class="fixed bottom-6 right-6 z-50 transform translate-y-12 opacity-0 pointer-events-none transition-all duration-300 bg-slate-900 text-white dark:bg-white dark:text-slate-900 px-6 py-3.5 rounded-2xl flex items-center gap-2.5 shadow-xl text-xs font-bold">
+        <i id="notificationIcon" class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>
+        <span id="notificationMessage">কপি সম্পন্ন হয়েছে!</span>
+    </div>
+
+    <!-- FOOTER SECTION -->
+    <footer class="bg-slate-900 text-slate-400 border-t border-slate-800 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-8 h-8 bg-gradient-to-tr from-brand-600 to-amber-500 rounded-lg flex items-center justify-center text-white font-extrabold text-base">
+                            অ
+                        </div>
+                        <span class="text-lg font-bold text-white tracking-tight">বর্ণবীথি</span>
+                    </div>
+                    <p class="text-xs leading-relaxed max-w-sm">
+                        বর্ণবীথি একটি আধুনিক বাংলা টাইপোগ্রাফি রিসার্চ হাব এবং ওপেন-সোর্স ফন্ট ডিরেক্টরি। ফন্টের নান্দনিকতা বাড়াতে আমাদের এই নিরলস প্রয়াস।
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold uppercase text-white mb-4 tracking-widest">গুরুত্বপূর্ণ লিংক</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><button onclick="navigateToPage('home')" class="hover:text-white transition">হোমপেজ</button></li>
+                        <li><button onclick="navigateToPage('search')" class="hover:text-white transition">ফন্ট সার্চ ও ডিরেক্টরি</button></li>
+                        <li><button onclick="navigateToPage('compare')" class="hover:text-white transition">তুলনা করুন (Compare)</button></li>
+                        <li><a href="https://fonts.google.com" target="_blank" class="hover:text-white transition">গুগল ফন্টস</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold uppercase text-white mb-4 tracking-widest">কমিউনিটি ও লাইসেন্স</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#" class="hover:text-white transition">ওপেন সোর্স পলিসি</a></li>
+                        <li><a href="#" class="hover:text-white transition">ব্যবহারের শর্তাবলী</a></li>
+                        <li><a href="#" class="hover:text-white transition">প্রাইভেসি পলিসি</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="mt-12 pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px]">
+                <span>© ২০২৬ বর্ণবীথি (Bornomala Hub). সর্বস্বত্ব সংরক্ষিত।</span>
+                <div class="flex items-center gap-4">
+                    <a href="#" class="hover:text-white transition text-lg"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" class="hover:text-white transition text-lg"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" class="hover:text-white transition text-lg"><i class="fa-brands fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- APPLICATION LOGIC / JAVASCRIPT -->
+    <script>
+        // State variables
+        let soundEnabled = true;
+        let selectedCategory = 'All';
+        let searchQuery = '';
+        let activeVirtualPage = 'home';
+        let displayedCount = 6; // Current loaded elements count (Pagination boundary)
+        const loadBatchSize = 3; // Step increment for pagination batching
+
+        // Structured JSON metadata representing external font configuration
+        const fontMetadata = [
+            { id: 'Noto_Sans_Bengali', name: 'Noto Sans Bengali', designer: 'Google', category: 'Sans-serif', styles: 9, downloads: 5420, dateAdded: '2026-05-15', fontClass: 'font-style-notosans', preview: 'আমার সোনার বাংলা, আমি তোমায় ভালোবাসি।' },
+            { id: 'Hind_Siliguri', name: 'Hind Siliguri', designer: 'Indian Type Foundry', category: 'Sans-serif', styles: 5, downloads: 3810, dateAdded: '2026-06-01', fontClass: 'font-style-hind', preview: 'আমার সোনার বাংলা, আমি তোমায় ভালোবাসি।' },
+            { id: 'Noto_Serif_Bengali', name: 'Noto Serif Bengali', designer: 'Google', category: 'Serif', styles: 4, downloads: 2940, dateAdded: '2026-04-10', fontClass: 'font-style-notoserif', preview: 'আমার সোনার বাংলা, আমি তোমায় ভালোবাসি।' },
+            { id: 'Anek_Bangla', name: 'Anek Bangla', designer: 'Ek Type', category: 'Sans-serif', styles: 8, downloads: 3150, dateAdded: '2026-06-20', fontClass: 'font-style-anek', preview: 'আমার সোনার বাংলা, আমি তোমায় ভালোবাসি।' },
+            { id: 'Mina', name: 'Mina', designer: 'Mooniak', category: 'Sans-serif', styles: 2, downloads: 1522, dateAdded: '2025-12-05', fontClass: 'font-style-mina', preview: 'আমার সোনার বাংলা, আমি তোমায় ভালোবাসি।' },
+            { id: 'Atma', name: 'Atma', designer: 'Red Rooster', category: 'Display', styles: 5, downloads: 920, dateAdded: '2026-01-18', fontClass: 'font-style-atma', preview: 'আমার সোনার বাংলা, আমি তোমায় ভালোবাসি।' },
+            { id: 'Galada', name: 'Galada', designer: 'Pablo Impallari', category: 'Cursive', styles: 1, downloads: 550, dateAdded: '2025-11-22', fontClass: 'font-style-galada', preview: 'আমার সোনার বাংলা, আমি তোমায় ভালোবাসি।' },
+            { id: 'Baloo_Da_2', name: 'Baloo Da 2', designer: 'Ek Type', category: 'Display', styles: 5, downloads: 1240, dateAdded: '2026-03-12', fontClass: 'font-style-baloo', preview: 'আমার সোনার বাংলা, আমি তোমায় ভালোবাসি।' },
+            { id: 'SolaimanLipi', name: 'SolaimanLipi', designer: 'Solaiman Karim', category: 'Sans-serif', styles: 2, downloads: 8320, dateAdded: '2025-05-10', fontClass: 'font-style-solaiman', preview: 'আমার সোনার বাংলা, আমি তোমায় ভালোবাসি।' },
+            { id: 'Kalpurush', name: 'Kalpurush', designer: 'Avro Team', category: 'Sans-serif', styles: 1, downloads: 6410, dateAdded: '2025-08-14', fontClass: 'font-style-kalpurush', preview: 'আমার সোনার বাংলা, আমি তোমায় ভালোবাসি।' },
+            { id: 'Siyam_Rupali', name: 'Siyam Rupali', designer: 'Siyam', category: 'Sans-serif', styles: 1, downloads: 2130, dateAdded: '2025-06-02', fontClass: 'font-style-siyam', preview: 'আমার সোনার বাংলা, আমি তোমায় ভালোবাসি।' },
+            { id: 'Charukola', name: 'Charukola', designer: 'OmicronLab', category: 'Serif', styles: 1, downloads: 1780, dateAdded: '2026-02-28', fontClass: 'font-style-charukola', preview: 'আমার সোনার বাংলা, আমি তোমায় ভালোবাসি।' }
+        ];
+
+        // Sound Engine for Typewriter keys
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        
+        function playTypewriterSound() {
+            if (!soundEnabled) return;
+            try {
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(150 + Math.random() * 200, audioCtx.currentTime);
+                
+                gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.08);
+                
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.08);
+            } catch (e) {
+                console.warn("Audio Context error:", e);
+            }
+        }
+
+        // Initialize state on window load
+        window.onload = function() {
+            // Setup global counters and initial layout rendering
+            updateTotalDownloadsDisplay();
+            updateTotalFontsDisplay();
+            renderRecentFonts();
+            renderFontCards();
+            
+            // Listen to keyboard events to trigger audio context typewriter feedback
+            document.getElementById('globalPreviewText').addEventListener('keydown', () => {
+                playTypewriterSound();
+            });
+            document.getElementById('modalPreviewBox').addEventListener('keydown', () => {
+                playTypewriterSound();
+            });
+
+            // Set dynamic system dark mode preference
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+
+            // Route to default page
+            navigateToPage('home');
+        };
+
+        // Multi-page simulated routing engine
+        function navigateToPage(pageId) {
+            activeVirtualPage = pageId;
+
+            // Hide all pages
+            const pages = document.querySelectorAll('.page-view');
+            pages.forEach(p => p.classList.add('hidden'));
+
+            // Show current target page
+            const targetPage = document.getElementById(`page-${pageId}`);
+            if (targetPage) {
+                targetPage.classList.remove('hidden');
+            }
+
+            // Sync Desktop Navigation Buttons Styles
+            const navButtons = document.querySelectorAll('.nav-btn');
+            navButtons.forEach(btn => {
+                btn.classList.remove('text-brand-600', 'dark:text-brand-400', 'font-bold');
+                btn.classList.add('text-slate-600', 'dark:text-slate-300');
+            });
+
+            const activeNav = document.getElementById(`nav-${pageId}`);
+            if (activeNav) {
+                activeNav.classList.add('text-brand-600', 'dark:text-brand-400', 'font-bold');
+                activeNav.classList.remove('text-slate-600', 'dark:text-slate-300');
+            }
+
+            // Sync Mobile Navigation Buttons Styles
+            const mobileButtons = document.querySelectorAll('.md\\:hidden button');
+            mobileButtons.forEach(btn => {
+                btn.classList.remove('text-brand-600');
+                btn.classList.add('text-slate-500', 'dark:text-slate-400');
+            });
+            const activeMobileNav = document.getElementById(`mobile-nav-${pageId}`);
+            if (activeMobileNav) {
+                activeMobileNav.classList.add('text-brand-600');
+                activeMobileNav.classList.remove('text-slate-500', 'dark:text-slate-400');
+            }
+
+            // Scroll cleanly to the top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Render "Recently Added Fonts" dynamically from sorted JSON
+        function renderRecentFonts() {
+            const container = document.getElementById('recentFontsGrid');
+            if (!container) return;
+
+            // Sort fonts by dateAdded descending and slice the first 3 elements
+            const sortedFonts = [...fontMetadata]
+                .sort((a, b) => new Date(b.dateAdded) - new Date(a.dateAdded))
+                .slice(0, 3);
+
+            container.innerHTML = '';
+            sortedFonts.forEach(font => {
+                const cardHtml = `
+                    <div class="p-6 bg-white dark:bg-slate-800 rounded-3xl border border-slate-100 dark:border-slate-800 hover:shadow-xl hover:border-brand-100 transition duration-300 flex flex-col justify-between group">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-[9px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full bg-brand-50 dark:bg-brand-950/50 text-brand-600 dark:text-brand-400 border border-brand-100/50 dark:border-brand-900/40">নতুন ফন্ট</span>
+                                <span class="text-[10px] text-slate-400 dark:text-slate-500 font-bold">${font.dateAdded}</span>
+                            </div>
+                            <h4 class="font-extrabold text-slate-900 dark:text-white group-hover:text-brand-500 transition-colors">${font.name}</h4>
+                            <p class="text-[10px] text-slate-400 dark:text-slate-500 mt-0.5">ডিজাইনার: ${font.designer}</p>
+                            
+                            <!-- Small dynamic typography teaser -->
+                            <div class="py-6 min-h-[90px] flex items-center overflow-hidden">
+                                <span class="${font.fontClass} text-xl text-slate-800 dark:text-slate-200 block break-words w-full truncate text-left">${font.preview}</span>
+                            </div>
+                        </div>
+                        <div class="pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
+                            <button onclick="openFontDetails('${font.name}')" class="text-xs font-bold text-slate-500 hover:text-brand-500 flex items-center gap-1">বিশদ তথ্য <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i></button>
+                            <button onclick="downloadFont('${font.name}')" class="w-8 h-8 rounded-xl bg-brand-50 dark:bg-brand-950/40 text-brand-500 hover:bg-brand-500 hover:text-white flex items-center justify-center transition-all"><i class="fa-solid fa-download text-xs"></i></button>
+                        </div>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', cardHtml);
+            });
+        }
+
+        // Dynamic JSON Card Rendering with Infinite Scroll (Pagination) Support
+        function renderFontCards() {
+            const container = document.getElementById('fontsContainer');
+            if (!container) return;
+
+            // Clear previous items
+            container.innerHTML = '';
+
+            // Apply Filters (Search and Category filters mapped directly over metadata)
+            const filteredFonts = fontMetadata.filter(font => {
+                const matchesCategory = (selectedCategory === 'All' || font.category === selectedCategory);
+                const matchesSearch = (font.name.toLowerCase().includes(searchQuery.toLowerCase()));
+                return matchesCategory && matchesSearch;
+            });
+
+            // Splice according to current pagination limit
+            const slicedFonts = filteredFonts.slice(0, displayedCount);
+
+            slicedFonts.forEach(font => {
+                const isStyleOverridden = document.getElementById('globalPreviewText').value;
+                const sampleText = isStyleOverridden || font.preview;
+                const fontSize = document.getElementById('globalFontSize').value || 36;
+
+                const cardHtml = `
+                    <div class="font-card bg-white dark:bg-slate-800/80 rounded-2xl border border-slate-100 dark:border-slate-800 hover:shadow-xl dark:hover:shadow-brand-950/20 hover:border-brand-200 dark:hover:border-slate-700 transition-all duration-300 flex flex-col group overflow-hidden" data-name="${font.name}" data-category="${font.category}">
+                        <div class="p-6 flex-1">
+                            <div class="flex items-start justify-between mb-4">
+                                <div>
+                                    <h3 class="font-bold text-slate-800 dark:text-white group-hover:text-brand-500 dark:group-hover:text-brand-400 transition-colors">${font.name}</h3>
+                                    <p class="text-[11px] text-slate-400 dark:text-slate-500 mt-0.5">ডিজাইনার: ${font.designer} • <span class="uppercase font-semibold">${font.category}</span></p>
+                                </div>
+                                <button onclick="openFontDetails('${font.name}')" class="w-8 h-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors" title="Full Details">
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </button>
+                            </div>
+                            <!-- Sample Font Text Area -->
+                            <div class="preview-text-box min-h-[140px] flex items-center overflow-x-auto text-left py-4" style="font-size: ${fontSize}px;">
+                                <span class="${font.fontClass} leading-normal select-all break-words w-full text-left">${sampleText}</span>
+                            </div>
+                        </div>
+                        <!-- Card Footer Info -->
+                        <div class="px-6 py-4 bg-slate-50/50 dark:bg-slate-800/20 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
+                            <span class="text-slate-500 dark:text-slate-400 font-semibold flex items-center gap-1">
+                                <i class="fa-solid fa-arrow-down text-brand-500"></i> <span id="dl-${font.id}">${font.downloads}</span> ডাউনলোড
+                            </span>
+                            <button onclick="downloadFont('${font.name}')" class="flex items-center gap-1 bg-brand-100 text-brand-700 dark:bg-brand-950/40 dark:text-brand-300 hover:bg-brand-600 hover:text-white dark:hover:bg-brand-500 px-3 py-1.5 rounded-lg transition-all font-semibold">
+                                <i class="fa-solid fa-arrow-down-to-bracket text-[10px]"></i> ডাউনলোড
+                            </button>
+                        </div>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', cardHtml);
+            });
+
+            // Update No Results Feedback Element
+            const noResults = document.getElementById('noResultsAlert');
+            if (filteredFonts.length === 0) {
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
+            }
+
+            // Sync/Toggle Load More Paginated Button Visibility
+            const loadMoreSection = document.getElementById('loadMoreSection');
+            if (filteredFonts.length > displayedCount) {
+                loadMoreSection.classList.remove('hidden');
+            } else {
+                loadMoreSection.classList.add('hidden');
+            }
+        }
+
+        // Handle Paginated Load More Actions
+        function handleLoadMore() {
+            const loadBtn = document.getElementById('loadMoreBtn');
+            const btnText = document.getElementById('loadBtnText');
+            const btnIcon = document.getElementById('loadBtnIcon');
+
+            // Set loading state simulation parameters
+            loadBtn.disabled = true;
+            btnText.textContent = "লোড হচ্ছে...";
+            btnIcon.className = "fa-solid fa-circle-notch animate-spin text-[10px]";
+
+            setTimeout(() => {
+                // Increment boundaries
+                displayedCount += loadBatchSize;
+                renderFontCards();
+
+                // Re-enable and reset state
+                loadBtn.disabled = false;
+                btnText.textContent = "আরো ফন্ট লোড করুন";
+                btnIcon.className = "fa-solid fa-chevron-down text-[10px]";
+                
+                showNotification("নতুন ফন্ট সফলভাবে যুক্ত হয়েছে!", "success");
+            }, 600);
+        }
+
+        // Search trigger function from Home Screen Portal
+        function triggerLandingSearch() {
+            const query = document.getElementById('landingSearchInput').value.trim();
+            if (query.length > 0) {
+                document.getElementById('fontSearchInput').value = query;
+                document.getElementById('headerSearchInput').value = query;
+                searchQuery = query;
+                
+                navigateToPage('search');
+                showSearchBadge(query);
+                
+                // Reset pagination boundaries back to start on new search query
+                displayedCount = 6;
+                renderFontCards();
+            } else {
+                navigateToPage('search');
+                clearSearchFilter();
+            }
+        }
+
+        // Global Header Search Listener (Redirects to Search Results page as user types)
+        function handleGlobalHeaderSearch(value) {
+            searchQuery = value.trim();
+            document.getElementById('fontSearchInput').value = value;
+            
+            // Redirect to Search page instantly if user types from other scopes
+            if (activeVirtualPage !== 'search') {
+                navigateToPage('search');
+            }
+
+            if (searchQuery.length > 0) {
+                showSearchBadge(value);
+            } else {
+                hideSearchBadge();
+            }
+            
+            displayedCount = 6; // Reset pagination boundaries
+            renderFontCards();
+        }
+
+        // Suggestions click handlers
+        function searchBySuggestion(term) {
+            document.getElementById('landingSearchInput').value = term;
+            triggerLandingSearch();
+        }
+
+        function routeToCategory(cat) {
+            navigateToPage('search');
+            filterCategory(cat);
+        }
+
+        function showSearchBadge(query) {
+            const badge = document.getElementById('activeQueryBadge');
+            const word = document.getElementById('activeSearchWord');
+            word.textContent = `"${query}"`;
+            badge.classList.remove('hidden');
+        }
+
+        function hideSearchBadge() {
+            const badge = document.getElementById('activeQueryBadge');
+            badge.classList.add('hidden');
+        }
+
+        function clearSearchFilter() {
+            document.getElementById('fontSearchInput').value = '';
+            document.getElementById('headerSearchInput').value = '';
+            document.getElementById('landingSearchInput').value = '';
+            searchQuery = '';
+            hideSearchBadge();
+            
+            displayedCount = 6; // Reset boundaries
+            renderFontCards();
+        }
+
+        // Theme switching handler
+        function toggleTheme() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Font Custom Preview controllers
+        function updateAllPreviews(text) {
+            const boxes = document.querySelectorAll('.preview-text-box span');
+            boxes.forEach(box => {
+                box.textContent = text || "সোনার বাংলা";
+            });
+        }
+
+        function updateAllSizes(size) {
+            document.getElementById('fontSizeVal').textContent = size;
+            const boxes = document.querySelectorAll('.preview-text-box');
+            boxes.forEach(box => {
+                box.style.fontSize = `${size}px`;
+            });
+        }
+
+        function applyPresetText(preset) {
+            document.getElementById('globalPreviewText').value = preset;
+            updateAllPreviews(preset);
+        }
+
+        function changeAlignment(align) {
+            const boxes = document.querySelectorAll('.preview-text-box span');
+            boxes.forEach(box => {
+                box.style.textAlign = align;
+                if (align === 'center') {
+                    box.classList.remove('text-left', 'text-right');
+                    box.classList.add('text-center');
+                } else if (align === 'right') {
+                    box.classList.remove('text-left', 'text-center');
+                    box.classList.add('text-right');
+                } else {
+                    box.classList.remove('text-center', 'text-right');
+                    box.classList.add('text-left');
+                }
+            });
+            
+            // Toggle highlight on align buttons
+            const buttons = document.querySelectorAll('.align-btn');
+            buttons.forEach(btn => btn.classList.remove('bg-slate-100', 'dark:bg-slate-800', 'text-brand-600', 'font-bold'));
+            
+            event.currentTarget.classList.add('bg-slate-100', 'dark:bg-slate-800', 'text-brand-600', 'font-bold');
+        }
+
+        function resetGlobalControls() {
+            document.getElementById('globalPreviewText').value = "আমার সোনার বাংলা, আমি তোমায় ভালোবাসি।";
+            document.getElementById('globalFontSize').value = 36;
+            document.getElementById('fontSizeVal').textContent = "36";
+            updateAllPreviews("আমার সোনার বাংলা, আমি তোমায় ভালোবাসি।");
+            updateAllSizes(36);
+            changeAlignment('left');
+            
+            clearSearchFilter();
+            filterCategory('All');
+        }
+
+        // Sound Toggle switcher
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            const btn = document.getElementById('soundToggleBtn');
+            if (soundEnabled) {
+                btn.innerHTML = '<i class="fa-solid fa-volume-high text-brand-500"></i>';
+            } else {
+                btn.innerHTML = '<i class="fa-solid fa-volume-xmark"></i>';
+            }
+        }
+
+        // Cumulative download metrics counters
+        function updateTotalDownloadsDisplay() {
+            let total = 0;
+            fontMetadata.forEach(font => {
+                total += font.downloads;
+            });
+
+            // Update both the count bar on the front page and search page stats block
+            const frontPageStatCounter = document.getElementById('statDownloadsCount');
+            if (frontPageStatCounter) {
+                frontPageStatCounter.textContent = total.toLocaleString('en-US');
+            }
+            
+            const statsLocalCounter = document.getElementById('searchTotalDownloadsCounter');
+            if (statsLocalCounter) {
+                statsLocalCounter.textContent = total.toLocaleString('en-US');
+            }
+        }
+
+        function updateTotalFontsDisplay() {
+            const totalFonts = fontMetadata.length;
+            const frontPageStatCounter = document.getElementById('statFontsCount');
+            if (frontPageStatCounter) {
+                frontPageStatCounter.textContent = totalFonts;
+            }
+
+            const localCounter = document.getElementById('searchTotalFontsCounter');
+            if (localCounter) {
+                localCounter.textContent = totalFonts.toLocaleString('en-US');
+            }
+        }
+
+        // Detailed Modal Operations
+        const fontsSpecs = {
+            'Noto Sans Bengali': { class: 'font-style-notosans', fontName: 'Noto Sans Bengali', fontImport: 'Noto+Sans+Bengali', designer: 'Google', category: 'Sans-serif' },
+            'Hind Siliguri': { class: 'font-style-hind', fontName: 'Hind Siliguri', fontImport: 'Hind+Siliguri', designer: 'Indian Type Foundry', category: 'Sans-serif' },
+            'Noto Serif Bengali': { class: 'font-style-notoserif', fontName: 'Noto Serif Bengali', fontImport: 'Noto+Serif+Bengali', designer: 'Google', category: 'Serif' },
+            'Anek Bangla': { class: 'font-style-anek', fontName: 'Anek Bangla', fontImport: 'Anek+Bangla', designer: 'Ek Type', category: 'Sans-serif' },
+            'Mina': { class: 'font-style-mina', fontName: 'Mina', fontImport: 'Mina', designer: 'Mooniak', category: 'Sans-serif' },
+            'Atma': { class: 'font-style-atma', fontName: 'Atma', fontImport: 'Atma', designer: 'Red Rooster', category: 'Display' },
+            'Galada': { class: 'font-style-galada', fontName: 'Galada', fontImport: 'Galada', designer: 'Pablo Impallari', category: 'Cursive' },
+            'Baloo Da 2': { class: 'font-style-baloo', fontName: 'Baloo Da 2', fontImport: 'Baloo+Da+2', designer: 'Ek Type', category: 'Display' },
+            'SolaimanLipi': { class: 'font-style-solaiman', fontName: 'SolaimanLipi', fontImport: 'Noto+Sans+Bengali', designer: 'Solaiman Karim', category: 'Sans-serif' },
+            'Kalpurush': { class: 'font-style-kalpurush', fontName: 'Kalpurush', fontImport: 'Noto+Sans+Bengali', designer: 'Avro Team', category: 'Sans-serif' },
+            'Siyam Rupali': { class: 'font-style-siyam', fontName: 'Siyam Rupali', fontImport: 'Noto+Sans+Bengali', designer: 'Siyam', category: 'Sans-serif' },
+            'Charukola': { class: 'font-style-charukola', fontName: 'Charukola', fontImport: 'Noto+Serif+Bengali', designer: 'OmicronLab', category: 'Serif' }
+        };
+
+        function openFontDetails(fontName) {
+            const spec = fontsSpecs[fontName];
+            if (!spec) return;
+
+            document.getElementById('modalFontName').textContent = fontName;
+            document.getElementById('modalFontCategory').textContent = spec.category;
+            
+            // Preview style
+            const previewBox = document.getElementById('modalPreviewBox');
+            previewBox.className = `w-full text-center outline-none select-all ${spec.class} leading-relaxed`;
+            previewBox.textContent = "আমার সোনার বাংলা, আমি তোমায় ভালোবাসি।";
+
+            // Generation of glyphs with font styles applied
+            generateModalGlyphs(spec.class);
+
+            // Integration code snippet fill
+            document.getElementById('integrationCodeHtml').textContent = `<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n<link href="https://fonts.googleapis.com/css2?family=${spec.fontImport}:wght@400;700&display=swap" rel="stylesheet">`;
+            document.getElementById('integrationCodeCss').textContent = `body {\n  font-family: '${fontName}', sans-serif;\n}`;
+
+            // Handle Dynamic Download Action parameter
+            document.getElementById('modalDownloadBtn').setAttribute('onclick', `downloadFont('${fontName}')`);
+
+            // Reset Tab to default "tester"
+            switchModalTab('tester');
+
+            document.getElementById('fontDetailModal').classList.remove('hidden');
+        }
+
+        function closeFontDetails() {
+            document.getElementById('fontDetailModal').classList.add('hidden');
+        }
+
+        function switchModalTab(tabId) {
+            // Remove active style from tabs
+            const tabBtns = document.querySelectorAll('.modal-tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('border-b-2', 'border-brand-500', 'text-brand-600', 'dark:text-brand-400');
+                btn.classList.add('text-slate-500');
+            });
+
+            // Hide all tab content panes
+            const panes = document.querySelectorAll('.modal-tab-pane');
+            panes.forEach(pane => pane.classList.add('hidden'));
+
+            // Show and set active
+            document.getElementById(`tabBtn-${tabId}`).classList.add('border-b-2', 'border-brand-500', 'text-brand-600', 'dark:text-brand-400');
+            document.getElementById(`modalTabContent-${tabId}`).classList.remove('hidden');
+        }
+
+        // Generator of Glyphs view within Modal
+        function generateModalGlyphs(fontClass) {
+            const vowels = ['অ', 'আ', 'ই', 'ঈ', 'উ', 'ঊ', 'ঋ', 'এ', 'ঐ', 'ও', 'ঔ'];
+            const kars = ['া', 'ি', 'ী', 'ু', 'ূ', 'ৃ', 'ে', 'ৈ', 'ো', 'ৌ'];
+            const consonants = [
+                'ক', 'খ', 'গ', 'ঘ', 'ঙ', 'চ', 'ছ', 'জ', 'ঝ', 'ঞ',
+                'ট', 'ঠ', 'ড', 'ঢ', 'ণ', 'ত', 'থ', 'দ', 'ধ', 'ন',
+                'প', 'ফ', 'ব', 'ভ', 'ম', 'য', 'র', 'ল', 'শ', 'ষ',
+                'স', 'হ', 'ড়', 'ঢ়', 'য়', 'ৎ', 'ং', 'ঃ', 'ঁ'
+            ];
+
+            const renderContainer = (containerId, chars) => {
+                const container = document.getElementById(containerId);
+                container.innerHTML = '';
+                chars.forEach(char => {
+                    const item = document.createElement('div');
+                    item.className = `p-3 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-800 text-lg sm:text-2xl hover:bg-brand-500 hover:text-white dark:hover:bg-brand-500 transition-colors duration-200 ${fontClass}`;
+                    item.textContent = char;
+                    container.appendChild(item);
+                });
+            };
+
+            renderContainer('modalVowelsContainer', vowels);
+            renderContainer('modalKarsContainer', kars);
+            renderContainer('modalConsonantsContainer', consonants);
+        }
+
+        function updateModalFontSize(size) {
+            document.getElementById('modalFontSizeVal').textContent = size;
+            document.getElementById('modalPreviewBox').style.fontSize = `${size}px`;
+        }
+
+        // Compare System
+        function syncCompareText(text, target) {
+            playTypewriterSound();
+            if (target === 'B') {
+                document.getElementById('compareTextareaB').value = text;
+            } else {
+                document.getElementById('compareTextareaA').value = text;
+            }
+        }
+
+        function updateCompareText() {
+            const fontClassA = document.getElementById('compareSelectA').value;
+            const fontClassB = document.getElementById('compareSelectB').value;
+
+            const textareaA = document.getElementById('compareTextareaA');
+            const textareaB = document.getElementById('compareTextareaB');
+
+            textareaA.className = `w-full h-64 bg-transparent border-0 focus:ring-0 resize-none text-xl text-slate-800 dark:text-slate-200 leading-relaxed outline-none ${fontClassA}`;
+            textareaB.className = `w-full h-64 bg-transparent border-0 focus:ring-0 resize-none text-xl text-slate-800 dark:text-slate-200 leading-relaxed outline-none ${fontClassB}`;
+        }
+
+        function updateModalLineHeight(lh) {
+            document.getElementById('modalLineHeightVal').textContent = lh;
+            document.getElementById('modalPreviewBox').style.lineHeight = lh;
+        }
+
+        // Utilities: Copy snippet to clipboard
+        function copySnippet(elementId) {
+            const content = document.getElementById(elementId).textContent;
+            
+            // Create a temporary textarea to hold the string for document.execCommand
+            const temp = document.createElement('textarea');
+            temp.value = content;
+            document.body.appendChild(temp);
+            temp.select();
+            
+            try {
+                document.execCommand('copy');
+                showNotification('সাকসেসফুলি ক্লিপবোর্ডে কপি করা হয়েছে!', 'success');
+            } catch (err) {
+                console.error('Copy to clipboard failed', err);
+            }
+            document.body.removeChild(temp);
+        }
+
+        // Download Simulator with Real-Time Counter Increments
+        function downloadFont(fontName) {
+            showNotification(`"${fontName}" জিপ ফাইল প্রস্তুত হচ্ছে...`, 'info');
+            
+            setTimeout(() => {
+                // Find and update the JSON entry for downloads count
+                const fontIndex = fontMetadata.findIndex(f => f.name === fontName);
+                if (fontIndex !== -1) {
+                    fontMetadata[fontIndex].downloads++;
+                    
+                    // Update matching element label locally
+                    const targetFont = fontMetadata[fontIndex];
+                    const labelId = `dl-${targetFont.id}`;
+                    const label = document.getElementById(labelId);
+                    if (label) {
+                        label.textContent = targetFont.downloads;
+                    }
+                }
+
+                // Sync global statistics display
+                updateTotalDownloadsDisplay();
+                renderRecentFonts(); // Rerender matching counters in Recently Added block as well
+
+                showNotification(`"${fontName}" সফলভাবে ডাউনলোড হয়েছে!`, 'success');
+                // Trigger actual mock file download by creating a mock element
+                const element = document.createElement('a');
+                element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent('Simulated font file for ' + fontName));
+                element.setAttribute('download', `${fontName.replace(/\s+/g, '_')}_bornomala.zip`);
+                element.style.display = 'none';
+                document.body.appendChild(element);
+                element.click();
+                document.body.removeChild(element);
+            }, 1200);
+        }
+
+        // Dedicated search results local input listener
+        function filterCategory(cat) {
+            selectedCategory = cat;
+            const tabs = document.querySelectorAll('.cat-tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('bg-brand-600', 'text-white', 'shadow-md', 'shadow-brand-500/10');
+                tab.classList.add('bg-white', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-300', 'border', 'border-slate-200', 'dark:border-slate-700');
+            });
+
+            const activeTab = document.getElementById(`cat-${cat}`);
+            if (activeTab) {
+                activeTab.classList.add('bg-brand-600', 'text-white', 'shadow-md', 'shadow-brand-500/10');
+                activeTab.classList.remove('bg-white', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-300', 'border', 'border-slate-200', 'dark:border-slate-700');
+            }
+            
+            displayedCount = 6; // Reset page load limits
+            renderFontCards();
+        }
+
+        // Notification System
+        function showNotification(message, type) {
+            const banner = document.getElementById('notificationAlert');
+            const icon = document.getElementById('notificationIcon');
+            const text = document.getElementById('notificationMessage');
+
+            text.textContent = message;
+
+            if (type === 'success') {
+                icon.className = 'fa-solid fa-circle-check text-emerald-400 text-lg';
+            } else if (type === 'info') {
+                icon.className = 'fa-solid fa-circle-info text-blue-400 text-lg';
+            } else {
+                icon.className = 'fa-solid fa-triangle-exclamation text-amber-400 text-lg';
+            }
+
+            // Animate In
+            banner.classList.remove('translate-y-12', 'opacity-0', 'pointer-events-none');
+            banner.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                // Animate Out
+                banner.classList.remove('translate-y-0', 'opacity-100');
+                banner.classList.add('translate-y-12', 'opacity-0', 'pointer-events-none');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
