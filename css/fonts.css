@@ -1,7 +1,11 @@
 @font-face {
+        font-family: 'HasanMehek';
+        src: url(https://cdn.jsdelivr.net/gh/subharoy7492/FontFace/fonts/Hasan_Mehek.woff2) format('woff2'); font-display: swap;
+    }
+@font-face {
         font-family: 'NilMaya';
         src: url(https://cdn.jsdelivr.net/gh/subharoy7492/FontFace/fonts/NilMaya.woff2) format('woff2'); font-display: swap;
-    }
+}
  @font-face {
         font-family: 'NilCanvas';
         src: url(https://cdn.jsdelivr.net/gh/subharoy7492/FontFace/fonts/BH_Nil_Canvas_Unicode.woff2) format('woff2'); font-display: swap;
