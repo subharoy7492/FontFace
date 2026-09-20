@@ -3,8 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>বাংলা হরফ — বাংলা ফন্ট হাব</title>
-<link href="https://cdn.jsdelivr.net/gh/subharoy7492/FontFace/css/fonts.css" rel="stylesheet">
+<title>বাংলা হরফ — বাংলা ফন্ট ফাউন্ড্রি</title>
+<meta name="keywords" content="free bangla font download for graphic design, best bangla font for designers, professional bengali fonts for website, top bangla fonts for mobile editing, stylish bangla typography font download">
+<meta name="google-site-verification" content="AQPXGBc9aHzq5hbZyYZubrsDOJS1Vyps7M3otkCevsY" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link href="https://cdn.jsdelivr.net/gh/subharoy7492/FontFace/css/fonts.css" rel="stylesheet">ht
 
 <style>
 /* =========================================================
@@ -30,7 +36,8 @@
 html{scroll-behavior:smooth}
 body{
   margin:0;
-  font-family:"Noto Sans Bengali","SolaimanLipi",Arial,sans-serif;
+  font-family: "Hind Siliguri", sans-serif;
+  font-weight: 400;
   color:var(--text);
   background:var(--bg);
   line-height:1.6;
@@ -266,13 +273,15 @@ input:focus,textarea:focus,select:focus{
 .font-actions button,.font-actions a{flex:1;text-align:center}
 
 /* Preview classes */
-.font-nasirnagar{font-family:"Nasirnagar",sans-serif;font-weight:500}
 .font-HasanMehek{font-family:"HasanMehek",sans-serif;font-weight:500}
-.font-serif{font-family:"Noto Serif Bengali","Times New Roman",serif}
-.font-display{font-family:"Noto Sans Bengali",sans-serif;font-weight:800}
-.font-cursive{font-family:cursive,"Noto Sans Bengali",sans-serif}
-.font-mina{font-family:"Noto Sans Bengali",sans-serif}
-.font-hind{font-family:"Noto Sans Bengali",sans-serif}
+.font-BanglaBrush{font-family:"BanglaBrush",sans-serif;font-weight:500}
+.font-nasirnagar{font-family:"Nasirnagar",sans-serif;font-weight:500}
+.font-IbneKasir{font-family:"IbneKasir",sans-serif;font-weight:500}
+.font-Padmabahar{font-family:"Padmabahar",sans-serif;font-weight:500}
+.font-NilCanvas{font-family:"NilCanvas",sans-serif;font-weight:500}
+.font-SabitAdorso{font-family:"SabitAdorso",sans-serif;font-weight:500}
+.font-ShamimAparajeyo{font-family:"ShamimAparajeyo",sans-serif;font-weight:500}
+.font-HadaVoda{font-family:"HadaVoda",sans-serif;font-weight:500}
 
 /* Compare */
 .compare-page{padding:60px 0}
@@ -480,7 +489,7 @@ body.dark .btn-light,body.dark .close-btn{background:#334155;color:#e5e7eb}
 <header class="header">
   <div class="container header-inner">
     <a class="logo" href="#" onclick="showPage('home');return false">
-      <span class="logo-mark">হ</span>
+      <span class="logo-mark">ব</span>
       <span>বাংলা হরফ<small>BANGLAHARAF FONT FOUNDRY</small></span>
     </a>
 
@@ -500,7 +509,7 @@ body.dark .btn-light,body.dark .close-btn{background:#334155;color:#e5e7eb}
 
 <div class="mobile-nav">
   <button id="m-home" onclick="showPage('home')">⌂<br>হোম</button>
-  <button id="m-search" onclick="showPage('search')">Aa<br>ফন্ট সার্চ</button>
+  <button id="m-search" onclick="showPage('search')">Aa<br>সমস্ত ফন্ট</button>
   <button id="m-compare" onclick="showPage('compare')">⇄<br>তুলনা</button>
 </div>
 
@@ -705,7 +714,7 @@ body.dark .btn-light,body.dark .close-btn{background:#334155;color:#e5e7eb}
         </ul>
       </div>
     </div>
-    <div class="footer-bottom">© 2026 BanglaHaraf — আপনার প্রয়োজন অনুযায়ী এই HTML ফাইলটি সম্পাদনা করুন।</div>
+    <div class="footer-bottom">© 2026 BanglaHaraf</div>
   </div>
 </footer>
 
@@ -735,134 +744,79 @@ const fonts = [
     license:"Free"
   },
   {
+    name:"Nil Bangla Brush",
+    fontFamily: "BanglaBrush",
+    designer:"Sakhawoat Kazi",
+    category:"Display",
+    styles:2,
+    className:"font-BanglaBrush",
+    download:"https://banglaharaf.com/nil-bangla-brush-font/",
+    license:"Free"
+  },
+  {
     name:"AB Nasirnagar",
     fontFamily: "Nasirnagar",
     designer:"Abu Bakar",
     category:"Display",
     styles:2,
     className:"font-nasirnagar",
-    download:"#",
+    download:"https://banglaharaf.com/ab-nasirnagar/",
     license:"Free"
   },
   {
-    name:"Hind Siliguri",
-    designer:"Indian Type Foundry",
-    category:"Sans-serif",
-    styles:5,
-    className:"font-hind",
-    download:"#",
-    googleFont:"Hind+Siliguri",
-    license:"OFL / Open Source"
-  },
-  {
-    name:"Noto Serif Bengali",
-    designer:"Google",
-    category:"Serif",
-    styles:4,
-    className:"font-serif",
-    download:"#",
-    googleFont:"Noto+Serif+Bengali",
-    license:"OFL / Open Source"
-  },
-  {
-    name:"Anek Bangla",
-    designer:"Ek Type",
-    category:"Sans-serif",
-    styles:8,
-    className:"font-anek",
-    download:"#",
-    googleFont:"Anek+Bangla",
-    license:"OFL / Open Source"
-  },
-  {
-    name:"Mina",
-    designer:"Mooniak",
-    category:"Sans-serif",
-    styles:2,
-    className:"font-mina",
-    download:"#",
-    googleFont:"Mina",
-    license:"OFL / Open Source"
-  },
-  {
-    name:"Atma",
-    designer:"Red Rooster",
+    name:"Faruk Ibne Kasir",
+    fontFamily: "IbneKasir",
+    designer:"Omar Faruk",
     category:"Display",
-    styles:5,
-    className:"font-display",
-    download:"#",
-    googleFont:"Atma",
-    license:"OFL / Open Source"
+    styles:2,
+    className:"font-IbneKasir",
+    download:"https://banglaharaf.com/faruk-ibne-kasir-font/",
+    license:"Free"
   },
   {
-    name:"Galada",
-    designer:"Pablo Impallari",
+    name:"Padmabahar",
+    designer:"Shishir Manik",
     category:"Cursive",
-    styles:1,
-    className:"font-cursive",
-    download:"#",
-    googleFont:"Galada",
-    license:"OFL / Open Source"
+    styles:2,
+    className:"font-Padmabahar",
+    download:"https://banglaharaf.com/padmabahar/",
+    license:"Free"
   },
   {
-    name:"Baloo Da 2",
-    designer:"Ek Type",
-    category:"Display",
-    styles:5,
-    className:"font-display",
-    download:"#",
-    googleFont:"Baloo+Da+2",
-    license:"OFL / Open Source"
+    name:"NilCanvas",
+    designer:"Sakhawoat Kazi",
+    category:"Serif",
+    styles:2,
+    className:"font-NilCanvas",
+    download:"https://banglaharaf.com/nil-canvas/",
+    license:"Free"
   },
   {
-    name:"SolaimanLipi",
-    designer:"Solaiman Karim",
+    name:"Sabit Adorsho",
+    designer:"Md. Rashedul Islam",
     category:"Sans-serif",
     styles:2,
-    className:"font-anek",
-    download:"#",
-    googleFont:"Noto+Sans+Bengali",
-    license:"OFL / Open Source"
+    className:"font-SabitAdorso",
+    download:"https://banglaharaf.com/sabit-adorsho/",
+    license:"Free"
   },
   {
-    name:"Kalpurush",
-    designer:"Avro Team",
-    category:"Sans-serif",
-    styles:1,
-    className:"font-anek",
-    download:"#",
-    googleFont:"Noto+Sans+Bengali",
-    license:"OFL / Open Source"
+    name:"Shamim Aparajeyo",
+    designer:"Md. Shamim",
+    category:"Display",
+    styles:2,
+    className:"font-ShamimAparajeyo",
+    download:"https://banglaharaf.com/shamim-aparajeyo-bangla-font/",
+    license:"Free"
   },
   {
-    name:"Siyam Rupali",
-    designer:"Siyam",
-    category:"Sans-serif",
-    styles:1,
-    className:"font-anek",
-    download:"#",
-    googleFont:"Noto+Sans+Bengali",
-    license:"OFL / Open Source"
-  },
-  {
-    name:"Charukola",
-    designer:"OmicronLab",
-    category:"Serif",
-    styles:1,
-    className:"font-serif",
-    download:"#",
-    googleFont:"Noto+Serif+Bengali",
-    license:"OFL / Open Source"
-  },
-  {
-    name:"Charukola2",
-    designer:"OmicronLab",
-    category:"Serif",
-    styles:1,
-    className:"font-serif",
-    download:"#",
-    googleFont:"Noto+Serif+Bengali",
-    license:"OFL / Open Source"
+    name:"HadaVoda",
+    designer:"Subhadip Roy",
+    category:"Display",
+    styles:2,
+    className:"font-HadaVoda",
+    download:"https://banglaharaf.com/hadavoda-font/",
+    license:"Free"
   }
 ];
 
@@ -1065,6 +1019,11 @@ function renderFonts() {
   updatePreviews();
 }
 
+function loadMoreFonts() {
+  visibleFontCount += FONTS_PER_PAGE;
+  renderFonts();
+}
+
 function fontCard(font){
   return `
     <article class="font-card">
@@ -1074,8 +1033,8 @@ function fontCard(font){
         আমার সোনার বাংলা, আমি তোমায় ভালোবাসি।
       </div>
       <div class="font-actions">
-        <button class="btn btn-light" onclick="openModal('${escapeJS(font.name)}')">ফন্ট ইন্টিগ্রেশন</button>
-        <a class="btn btn-primary" href="${escapeAttr(font.download)}" target="_blank" onclick="trackDownload('${escapeJS(font.name)}')">ডাউনলোড</a>
+        <button class="btn btn-light" onclick="openModal('${escapeJS(font.name)}')">Embed Webfont</button>
+        <a class="btn btn-primary" href="${escapeAttr(font.download)}" target="_blank" onclick="trackDownload('${escapeJS(font.name)}')">Download</a>
       </div>
     </article>
   `;
@@ -1112,14 +1071,15 @@ function getFontFamily(font) {
   if (font.googleFont) return font.googleFont.replace(/\+/g, " ");
 
   const classMap = {
-    "font-nasirnagar": "Nasirnagar",
     "font-HasanMehek": "HasanMehek",
-    "font-hind": "Hind Siliguri",
-    "font-serif": "Noto Serif Bengali",
-    "font-anek": "Anek Bangla",
-    "font-mina": "Mina",
-    "font-display": "Atma",
-    "font-cursive": "Galada"
+    "font-BanglaBrush": "BanglaBrush",
+    "font-nasirnagar": "Nasirnagar",
+    "font-IbneKasir": "IbneKasir",
+    "font-Padmabahar": "Padmabahar",
+    "font-NilCanvas": "NilCanvas",
+    "font-SabitAdorso": "SabitAdorso",
+    "font-ShamimAparajeyo": "ShamimAparajeyo",
+    "font-HadaVoda": "HadaVoda",
   };
 
   return classMap[font.className] || font.name;
@@ -1132,7 +1092,7 @@ function updateIntegrationCode(font) {
     "Serif": "serif",
     "Sans-serif": "sans-serif",
     "Cursive": "cursive",
-    "Display": "cursive"
+    "Display": "display"
   };
   const fallback = fallbackMap[font.category] || "sans-serif";
   const fontUrlSlug = actualFamily.replace(/\s+/g, "+");
