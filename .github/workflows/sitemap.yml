@@ -4,6 +4,10 @@ on:
   push:
     branches: [ main ] # Change to master if your default branch is master
 
+# 1. ADD THIS PERMISSIONS BLOCK TO ALLOW PUSHING FILES
+permissions:
+  contents: write
+
 jobs:
   sitemap_job:
     runs-on: ubuntu-latest
@@ -12,13 +16,13 @@ jobs:
     - name: Checkout the repo
       uses: actions/checkout@v4
       with:
-        fetch-depth: 0 # Required to accurately get file modification times
+        fetch-depth: 0 
 
     - name: Generate the sitemap
       id: sitemap
       uses: cicirello/generate-sitemap@v1
       with:
-        base-url-path: https://github.io
+        base-url-path: https://github.io # Ensure this is your real URL!
 
     - name: Commit and push sitemap
       run: |
