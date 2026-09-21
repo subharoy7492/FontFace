@@ -189,16 +189,31 @@ input:focus,textarea:focus,select:focus{
 .section-title p{margin:0;color:var(--muted);font-size:13px}
 .categories{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+  grid-template-columns:repeat(5,1fr);
   gap:15px;
 }
 .category{
   background:var(--card);
   border:1px solid var(--border);
   border-radius:var(--radius);
-  padding:25px 15px;
+  padding:18px 10px;
   text-align:center;
   font-weight:800;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+.category svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 .category:hover{border-color:var(--primary);color:var(--primary)}
 
@@ -273,6 +288,7 @@ input:focus,textarea:focus,select:focus{
 .font-actions button,.font-actions a{flex:1;text-align:center}
 
 /* Preview classes */
+.font-Nirjhar{font-family:"Nirjhar",sans-serif;font-weight:500}
 .font-HasanMehek{font-family:"HasanMehek",sans-serif;font-weight:500}
 .font-BanglaBrush{font-family:"BanglaBrush",sans-serif;font-weight:500}
 .font-nasirnagar{font-family:"Nasirnagar",sans-serif;font-weight:500}
@@ -280,11 +296,29 @@ input:focus,textarea:focus,select:focus{
 .font-Padmabahar{font-family:"Padmabahar",sans-serif;font-weight:500}
 .font-NilCanvas{font-family:"NilCanvas",sans-serif;font-weight:500}
 .font-SabitAdorso{font-family:"SabitAdorso",sans-serif;font-weight:500}
+.font-ShamimAparajeyoRough{font-family:"ShamimAparajeyoRough",sans-serif;font-weight:500}
 .font-ShamimAparajeyo{font-family:"ShamimAparajeyo",sans-serif;font-weight:500}
 .font-HadaVoda{font-family:"HadaVoda",sans-serif;font-weight:500}
+.font-NilMaya{font-family:"NilMaya",sans-serif;font-weight:500}
+.font-Bornobithi{font-family:"Bornobithi",sans-serif;font-weight:500}
+.font-Jhorapalok{font-family:"Jhorapalok",sans-serif;font-weight:500}
+.font-NayanAlo{font-family:"NayanAlo",sans-serif;font-weight:500}
+.font-ShamimHostolipi{font-family:"ShamimHostolipi",sans-serif;font-weight:500}
+.font-HatekhariFill{font-family:"HatekhariFill",sans-serif;font-weight:500}
+.font-HatekhariDot{font-family:"HatekhariDot",sans-serif;font-weight:500}
+.font-Aparajito{font-family:"Aparajito",sans-serif;font-weight:500}
+.font-Kalikalam{font-family:"Kalikalam",sans-serif;font-weight:500}
+.font-Bornoporichay{font-family:"Bornoporichay",sans-serif;font-weight:500}
 
 /* Compare */
 .compare-page{padding:60px 0}
+.compare-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-bottom: 15px;
+}
 .compare-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -547,10 +581,26 @@ body.dark .btn-light,body.dark .close-btn{background:#334155;color:#e5e7eb}
       </div>
 
       <div class="categories">
-        <button class="category" onclick="openCategory('All')">অ<br><small>সব ফন্ট</small></button>
-        <button class="category" onclick="openCategory('Serif')">A<br><small>সেরিফ</small></button>
-        <button class="category" onclick="openCategory('Sans-serif')">A<br><small>সান্স-সেরিফ</small></button>
-        <button class="category" onclick="openCategory('Display')">ক<br><small>ডিসপ্লে</small></button>
+        <button class="category" onclick="openCategory('All')">
+          <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+          <small>সব ফন্ট</small>
+        </button>
+        <button class="category" onclick="openCategory('Serif')">
+          <svg viewBox="0 0 24 24"><path d="M4 20h6M14 20h6M12 4v16M8 4h8"/></svg>
+          <small>সেরিফ</small>
+        </button>
+        <button class="category" onclick="openCategory('Sans-serif')">
+          <svg viewBox="0 0 24 24"><path d="M5 20h14M12 4v16"/></svg>
+          <small>সান্স-সেরিফ</small>
+        </button>
+        <button class="category" onclick="openCategory('Display')">
+          <svg viewBox="0 0 24 24"><path d="M12 3v18M5 8l7-5 7 5M5 16l7 5 7-5"/></svg>
+          <small>ডিসপ্লে</small>
+        </button>
+        <button class="category" onclick="openCategory('Cursive')">
+          <svg viewBox="0 0 24 24"><path d="M18 4a3 3 0 0 1 3 3c0 7-5 13-11 13H4a2 2 0 0 1-2-2c0-4 4-6 8-6h4"/></svg>
+          <small>কার্সিভ</small>
+        </button>
       </div>
     </div>
   </section>
@@ -611,15 +661,26 @@ body.dark .btn-light,body.dark .close-btn{background:#334155;color:#e5e7eb}
       <h1>ফন্ট তুলনা</h1>
       <p>একই লেখা দুটি ফন্টে পাশাপাশি দেখুন।</p>
     </div>
+    <!-- Added Font Size Dropdown Option on Compare Page -->
+    <div class="compare-toolbar">
+      <label for="compareFontSize" style="font-weight:700;font-size:14px;color:var(--muted)">ফন্ট সাইজ:</label>
+      <select id="compareFontSize" style="width:auto;" onchange="updateCompareFontSize(this.value)">
+        <option value="20">20px</option>
+        <option value="28" selected>28px</option>
+        <option value="36">36px</option>
+        <option value="48">48px</option>
+        <option value="60">60px</option>
+      </select>
+    </div>
 
     <div class="compare-grid">
       <div class="compare-box">
         <select id="compareA" onchange="updateCompare()"></select>
-        <textarea id="compareTextA" oninput="syncCompare('A')">আমাদের মাতৃভাষা বাংলা। সঠিক ফন্ট ডিজাইনকে আরও সুন্দর করে তোলে।</textarea>
+        <textarea id="compareTextA" oninput="syncCompare('A')">বাংলা ভাষা শুধু একটি যোগাযোগের মাধ্যম নয়, বরং বাঙালির প্রাণ ও হাজার বছরের বর্ণিল সংস্কৃতির সেতু। এটি বিশ্ব মানচিত্রে একমাত্র ভাষা, যার সম্মান রক্ষা ও অধিকার আদায়ের জন্য রাজপথে বুকের তাজা রক্ত ঢেলে দিতে হয়েছিল অকুতোভয় সন্তানদের। মায়ের মুখের এই মধুর বুলির ঝংকার রবীন্দ্রনাথের কাব্যে, নজরুলের বিদ্রোহে এবং জীবনানন্দের রূপসী বাংলায় জীবন্ত হয়ে উঠেছে। ১৯৯৯ সালে ইউনেস্কো ২১শে ফেব্রুয়ারিকে ‘আন্তর্জাতিক মাতৃভাষা দিবস’ হিসেবে স্বীকৃতি দেওয়ায় বাংলা ভাষার মর্যাদা আজ বিশ্বব্যাপী সুপ্রতিষ্ঠিত।</textarea>
       </div>
       <div class="compare-box">
         <select id="compareB" onchange="updateCompare()"></select>
-        <textarea id="compareTextB" oninput="syncCompare('B')">আমাদের মাতৃভাষা বাংলা। সঠিক ফন্ট ডিজাইনকে আরও সুন্দর করে তোলে।</textarea>
+        <textarea id="compareTextB" oninput="syncCompare('B')">বাংলা ভাষা শুধু একটি যোগাযোগের মাধ্যম নয়, বরং বাঙালির প্রাণ ও হাজার বছরের বর্ণিল সংস্কৃতির সেতু। এটি বিশ্ব মানচিত্রে একমাত্র ভাষা, যার সম্মান রক্ষা ও অধিকার আদায়ের জন্য রাজপথে বুকের তাজা রক্ত ঢেলে দিতে হয়েছিল অকুতোভয় সন্তানদের। মায়ের মুখের এই মধুর বুলির ঝংকার রবীন্দ্রনাথের কাব্যে, নজরুলের বিদ্রোহে এবং জীবনানন্দের রূপসী বাংলায় জীবন্ত হয়ে উঠেছে। ১৯৯৯ সালে ইউনেস্কো ২১শে ফেব্রুয়ারিকে ‘আন্তর্জাতিক মাতৃভাষা দিবস’ হিসেবে স্বীকৃতি দেওয়ায় বাংলা ভাষার মর্যাদা আজ বিশ্বব্যাপী সুপ্রতিষ্ঠিত।</textarea>
       </div>
     </div>
   </div>
@@ -697,20 +758,11 @@ body.dark .btn-light,body.dark .close-btn{background:#334155;color:#e5e7eb}
         <p>বাংলা ফন্ট খোঁজা, পরীক্ষা ও ব্যবহারের জন্য BanglaHaraf-এর সহজ ফন্ট ডিরেক্টরি।</p>
       </div>
       <div>
-        <h4>লিংক</h4>
+        <h4>গুরুত্বপূর্ণ লিংক</h4>
         <ul>
-          <li><a href="#" onclick="showPage('home');return false">হোম</a></li>
-          <li><a href="#" onclick="showPage('search');return false">ফন্ট সার্চ</a></li>
-          <li><a href="#" onclick="showPage('compare');return false">তুলনা</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>আপনার তথ্য</h4>
-        <ul>
-          <li>ফন্টের নাম</li>
-          <li>ডিজাইনার</li>
-          <li>ক্যাটাগরি</li>
-          <li>ডাউনলোড লিংক</li>
+          <li><a href="https://banglaharaf.com/premium-font-p1/">প্রিমিয়াম ফন্ট</a></li>
+          <li><a href="#" onclick="showPage('search');return false">ফ্রি ফন্ট</a></li>
+          <li><a href="#" onclick="showPage('compare');return false">ফন্ট তুলনা</a></li>
         </ul>
       </div>
     </div>
@@ -733,6 +785,16 @@ const JSONBIN_CONFIG = {
    FONT DATA — BANGLAHARAF FONTS
    ========================================================= */
 const fonts = [
+{
+    name:"Nirjhar",
+    fontFamily: "Nirjhar",
+    designer:"Subhadip Roy",
+    category:"Cursive",
+    styles:2,
+    className:"font-Nirjhar",
+    download:"https://banglaharaf.com/nirjhar-bangla-pen-brush-font-download/",
+    license:"Free"
+  },
   {
     name:"Hasan Mehek",
     fontFamily: "HasanMehek",
@@ -801,6 +863,15 @@ const fonts = [
     license:"Free"
   },
   {
+    name:"Shamim Aparajeyo Rough",
+    designer:"Md. Shamim",
+    category:"Display",
+    styles:2,
+    className:"font-ShamimAparajeyoRough",
+    download:"https://banglaharaf.com/aparajeyo-rough/",
+    license:"Free"
+  },
+  {
     name:"Shamim Aparajeyo",
     designer:"Md. Shamim",
     category:"Display",
@@ -816,6 +887,96 @@ const fonts = [
     styles:2,
     className:"font-HadaVoda",
     download:"https://banglaharaf.com/hadavoda-font/",
+    license:"Free"
+  },
+  {
+    name:"Nil Maya",
+    designer:"Sakhawoat Kazi",
+    category:"Display",
+    styles:2,
+    className:"font-NilMaya",
+    download:"https://banglaharaf.com/nil-maya/",
+    license:"Free"
+  },
+  {
+    name:"Bornobithi",
+    designer:"Subhadip Roy",
+    category:"Display",
+    styles:2,
+    className:"font-Bornobithi",
+    download:"https://banglaharaf.com/bornobithi/",
+    license:"Free"
+  },
+  {
+    name:"Jhorapalok",
+    designer:"Subhadip Roy",
+    category:"Display",
+    styles:2,
+    className:"font-Jhorapalok",
+    download:"https://banglaharaf.com/jhorapalok-2/",
+    license:"Free"
+  },
+  {
+    name:"Nayan Alo",
+    designer:"Nayan Majumder",
+    category:"Display",
+    styles:4,
+    className:"font-NayanAlo",
+    download:"https://banglaharaf.com/nayan-alo/",
+    license:"Free"
+  },
+  {
+    name:"Shamim Hostolipi",
+    designer:"Md. Shamim",
+    category:"Cursive",
+    styles:4,
+    className:"font-ShamimHostolipi",
+    download:"https://banglaharaf.com/shamim-hostolipi/",
+    license:"Free"
+  },
+  {
+    name:"Hatekhari Fill",
+    designer:"Subhadip Roy",
+    category:"Sans-serif",
+    styles:4,
+    className:"font-HatekhariFill",
+    download:"https://banglaharaf.com/hatekhari/",
+    license:"Free"
+  },
+  {
+    name:"Hatekhari Dotted",
+    designer:"Subhadip Roy",
+    category:"Sans-serif",
+    styles:4,
+    className:"font-HatekhariDot",
+    download:"https://banglaharaf.com/hatekharidot/",
+    license:"Free"
+  },
+  {
+    name:"Aparajito",
+    designer:"Subhadip Roy",
+    category:"Display",
+    styles:4,
+    className:"font-Aparajito",
+    download:"https://banglaharaf.com/aparajito/",
+    license:"Free"
+  },
+  {
+    name:"Kalikalam",
+    designer:"Subhadip Roy",
+    category:"Display",
+    styles:4,
+    className:"font-Kalikalam",
+    download:"https://banglaharaf.com/kalikalam/",
+    license:"Free"
+  },
+  {
+    name:"Bornoporichay",
+    designer:"Subhadip Roy",
+    category:"Serif",
+    styles:2,
+    className:"font-Bornoporichay",
+    download:"https://banglaharaf.com/free-font-details/",
     license:"Free"
   }
 ];
@@ -1071,6 +1232,7 @@ function getFontFamily(font) {
   if (font.googleFont) return font.googleFont.replace(/\+/g, " ");
 
   const classMap = {
+    "font-Nirjhar": "Nirjhar",
     "font-HasanMehek": "HasanMehek",
     "font-BanglaBrush": "BanglaBrush",
     "font-nasirnagar": "Nasirnagar",
@@ -1078,8 +1240,19 @@ function getFontFamily(font) {
     "font-Padmabahar": "Padmabahar",
     "font-NilCanvas": "NilCanvas",
     "font-SabitAdorso": "SabitAdorso",
+    "font-ShamimAparajeyoRough": "ShamimAparajeyoRough",
     "font-ShamimAparajeyo": "ShamimAparajeyo",
     "font-HadaVoda": "HadaVoda",
+    "font-NilMaya": "NilMaya",
+    "font-Bornobithi": "Bornobithi",
+    "font-Jhorapalok": "Jhorapalok",
+    "font-NayanAlo": "NayanAlo",
+    "font-ShamimHostolipi": "ShamimHostolipi",
+    "font-HatekhariFill": "HatekhariFill",
+    "font-HatekhariDot": "HatekhariDot",
+    "font-Aparajito": "Aparajito",
+    "font-Kalikalam": "Kalikalam",
+    "font-Bornoporichay": "Bornoporichay",
   };
 
   return classMap[font.className] || font.name;
@@ -1215,6 +1388,22 @@ function updateCompare(){
     textB.className = "compare-textarea " + (b?.className||"");
     textB.style.fontFamily = getFontFamily(b);
   }
+
+  const compSize = document.getElementById("compareFontSize") ? document.getElementById("compareFontSize").value : "28";
+  updateCompareFontSize(compSize);
+}
+
+function updateCompareFontSize(size) {
+  const textA = document.getElementById("compareTextA");
+  const textB = document.getElementById("compareTextB");
+  if(textA) textA.style.fontSize = size + "px";
+  if(textB) textB.style.fontSize = size + "px";
+}
+
+function syncCompare(side){
+  const source=document.getElementById("compareText"+side);
+  const other=side==="A"?"B":"A";
+  document.getElementById("compareText"+other).value=source.value;
 }
 
 function syncCompare(side){
