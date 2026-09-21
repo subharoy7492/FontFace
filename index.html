@@ -1096,7 +1096,7 @@ function updateIntegrationCode(font) {
   };
   const fallback = fallbackMap[font.category] || "sans-serif";
   const fontUrlSlug = actualFamily.replace(/\s+/g, "+");
-  const safeClass = "banglaharaf-" + actualFamily.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  const safeClass = "bh-" + actualFamily.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
   const htmlCode =
 `<link rel="preconnect" href="https://cdn.jsdelivr.net/gh/subharoy7492/FontFace/css/fonts.css">
