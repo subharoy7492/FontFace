@@ -20,144 +20,119 @@ const ANSI_TO_UNICODE = [["0","০"],["1","১"],["2","২"],["3","৩"],["4","�
 const UNICODE_TO_ANSI = [["!","æ"],["\\(","S"],["\\)","V"],["\\*"," "],[",","–"],["-","éôé"],["।","Ð"],[":","­"],[";","—"],["\\?","Ú"],["‘","ò"],["’","ó"],["'","ó"],["্র্য","ÊÄ"],["র‌্য","îûÄ"],["ড়","vþü"],["ঢ়","‘þü"],["য়","ëû"],["ক্ষ্ম","\""],["ক্ষ্ণ","Çøþ"],["ক্ষ্ব","Ç´þ"],["ক্ক","Eþ"],["ক্ট","Q"],["ক্ত্ব","_´«"],["ক্ত","_«"],["ক্ব","ðþ"],["ঙ্ক্র","BÊþ"],["স্ক্র","ßþ;"],["ষ্ক্র","Ü;þ"],["ল্ক","Íñ"],["ক্র","e«"],["স্ক্ল","ßþÏñ"],["ক্ল","„Ïþ"],["ক্ন","„øþ"],["ক্ম","©"],["ঙ্ক্ষ","AÇþ"],["ক্ষ","Çþ"],["ক্স",":"],["খ্ব","…´"],["গ্গ",">"],["গ্ধ","?þ"],["গ্দ","@”"],["গ্ন","@À"],["গ্ব","@»"],["গ্ম","@Â"],["গ্ল","@Õ"],["ঘ্ব","‡´"],["ঘ্ন","‡ø"],["ঙ্ক","Bþ"],["ঙ্ম","-"],["ঙ্খ","C"],["ঙ্গ","D"],["ঙ্ঘ","A‡"],["চ্ছ্ব","FŠ´é"],["চ্চ","F‰þ"],["চ্ছ","FŠé"],["ছ্ব","Š´é"],["চ্ঞ","þ"],["জ়","‹"],["জ্জ্ব","Iµ"],["জ্জ","I"],["জ্ঝ","J"],["জ্ঞ","Kþé"],["জ্ব","‹µ"],["জ্র","L"],["ঞ্চ","Mþé"],["ঞ্ছ","Nþ"],["ঞ্জ","O"],["ঞ্ঝ","P"],["ট্ট","R"],["ট্ব","Ý´þ"],["ট্ম",""],["ড্ড","Uþ"],["ণ্ট","^ùÝþ"],["ণ্ঠ","Zþ"],["ণ্ঢ","^éW"],["ণ্ণ","]"],["ণ্ম","^ùéÂ"],["ন্স","ª"],["ণ্ড","[þ"],["ন্তু","lsþ"],["ণ্ব","^é»"],["ত্ত্ব","_´"],["ত্ত","_"],["ত্থ","a"],["ত্ন","b"],["ত্ম","d"],["ত্ল","“Ïþ"],["ন্ত্ব","gsþ"],["স্ত্ব","gßþ"],["ত্ব","c"],["থ্ল","íÏ"],["থ্ব","í´"],["দ্গ","å†"],["দ্ঘ","å‡"],["দ্দ্ব","jµ"],["দ্দ","j"],["দ্ধ্ব","k´þ"],["দ্ধ","kþ"],["দ্ন","”ø"],["ন্দ্ব","rm"],["দ্ব","m"],["দ্ভ্র",""],["দ্ভ","q"],["দ্ম","p"],["ধ্ন","•ø"],["ধ্ব","•¹"],["ধ্ম",""],["ন্ট","rÝþ"],["ন্ঠ","tþ"],["ন্ড","uþ"],["ন্ত্র","sþf"],["ন্ত","hsþ"],["স্ত্র","ßþf"],["ত্র","e"],["ন্থ","sþi"],["ন্ধ","õþ"],["ন্ন","§¬"],["ন্ব","§º"],["ন্ম","§Ã"],["প্ট","²Wz"],["প্ত","®"],["প্ন","²À"],["প্প","¯"],["প্ল","²Õ"],["প্স","°"],["ফ্ল","šÏþ"],["ফ্ট","þ"],["ব্জ","¶"],["ব্দ","·"],["ন্দ্র","w"], ["দ্র","o"],["ন্দ","r”"],["ব্ধ","¸þ"],["ব্ব","î¹"],["ব্ল","îÏ"],["ম্ভ্র","¾"],["ভ্র","¼"],["ভ্ল","¦Ïþ"],["ম্ন","Á¬"],["স্প্র","ßþ±"],["ম্প্র","Á±"],["ষ্প্র","Ü±"],["ম্প","Á™"],["ম্ফ","Á³þ"],["ম্ব্র","ÁºÉ"],["ম্ব","Áº"],["ম্ভ","½þ"],["ম্ম","Á¿"],["ম্ল","ÁÔ"],["ল্স","Î¢"],["ল্ট","ÎÝþ"],["ল্ড","Óþ"],["ল্প","Ò"],["ল্ফ","Í³þ"],["ল্ব","Íº"],["ল্ম","ÍÃ"],["ল্ল","ÍÔ"],["শু","Ö"],["শ্চ","Øþ"],["শ্ছ","ÙŠé"],["শ্ন","ÙÀ"],["শ্ব","Ù»"],["শ্ম","ÙÂ"],["শ্ল","ÙÕ"],["শ্র","×"],["ষ্ক","Üñ"],["ষ্ব","Üº"],["ষ্ট","ÜT"],["ষ্ঠ","Ûþ"],["ষ্ণ","¡Œ"],["ষ্প","Ü™"],["ষ্ফ","Ü³þ"],["ষ্ম","Ü¿"],["স্ক","ßþñ"],["স্ট","ÞÝþ"],["স্খ","ßþ<"],["স্তু","lßþ"],["স্ত","hßþ"],["স্থ","ßþi"],["স্ন","ßþ¬"],["স্প","ßþ™"],["প্র","²Ì"],["স্ফ","ßþ³þ"],["স্ব","ßþº"],["স্ম","ßþ¿"],["স্ল","ßþÔ"],["স্র","ßþË"],["হু","ý"],["হ্ণ","ã"],["হ্ব","£¹"],["হ্ন","£«"],["হ্ম","áþ"],["ম্র","ÁË"],["হ্ল","â"],["হৃ","£*"],["ড়্গ","X†"],["ল্গু","€"],["ল্গ","Ñ"],["গ্র","@Ì"],["গু","="],["র্","Å"],["্র","Ê"],["্য","Ä"],["্","ä"],["আ","xy"],["অ","x"],["ই","£z"],["ঈ","{"],["উ","vþz"],["ঊ","|"],["ঋ","}"],["এ","~"],["ঐ","ú"],["ও","ç"],["ঔ","è"],["ক","„þ"],["খ","…"],["গ","†"],["ঘ","‡"],["ঙ","ˆ"],["চ","‰þ"],["ছ","Šé"],["জ","‹"],["ঝ","Gþ"],["ঞ","~Œ"],["ট","Ýþ"],["ঠ","àþ"],["ড","vþ"],["ঢ","‘þ"],["ণ","’"],["ত","“þ"],["থ","í"],["দ","”"],["ধ","•"],["ন","˜"],["প","þ™"],["ফ","šþ"],["ব","î"],["ভ","¦þ"],["ম","›"],["য","ë"],["র","îû"],["ল","œ"],["শ","Ÿ"],["ষ","¡ì"],["স","¢"],["হ","£"],["ড়","vþü"],["ঢ়","‘þü"],["য়","ëû"],["ৎ","ê"],["০","0"],["১","1"],["২","2"],["৩","3"],["৪","4"],["৫","5"],["৬","6"],["৭","7"],["৮","8"],["৯","9"],["া","y"],["ি","!"],["ী","#"],["ু","%"],["ূ",")"],["ৃ",","],["ে","öì"],["ৈ","÷ì"],["ৗ","ï"],["ং","‚"],["ঃ","ƒ"],["ঁ","¤"]];
 
 // Original common.js character classes, written out for clarity.
-const PRE_KAR = new Set(["ি","ৈ","ে"]);
-const POST_KAR = new Set(["া","ৗ","ু","ূ","ী","ৃ"]);
-const KAR = new Set([...PRE_KAR,...POST_KAR]);
-const BANJONBORNO = new Set("কখগঘঙচছজঝঞটঠডঢণতথদধনপফবভমশষসহযরলয়ৎ".split(""));
-const NUKTA = new Set(["ং","ঃ","ঁ"]);
-const HALANT = "্";
-const SPACE = new Set([" ","\t","\n","\r"]);
+const PRE_KAR=new Set(['ি','ৈ','ে']);
+const POST_KAR=new Set(['া','ো','ৌ','ু','ূ','ী','ৃ','ৗ']);
+const BANJON=new Set(Array.from('কখগঘঙচছজঝঞটঠডঢণতথদধনপফবভমশষসহযরলয়ড়ঢ়ৎ')); 
+const NUKTA=new Set(['়','ঁ','ং','ঃ']);
+const HALANT='্';
 function isPreKar(c){return PRE_KAR.has(c)}
 function isPostKar(c){return POST_KAR.has(c)}
-function isKar(c){return KAR.has(c)}
-function isBanjonborno(c){return BANJONBORNO.has(c)}
+function isKar(c){return isPreKar(c)||isPostKar(c)}
+function isBanjon(c){return BANJON.has(c)}
 function isNukta(c){return NUKTA.has(c)}
 function isHalant(c){return c===HALANT}
-function isSpace(c){return SPACE.has(c)}
+function isSpace(c){return c===' '||c==='\t'||c==='\n'||c==='\r'}
 
-// Exact conceptual equivalent of V3 ReArrangeUnicodeConvertedText().
-// It is deliberately written with readable names instead of obfuscated identifiers.
-function rearrangeUnicodeConvertedText(text){
-  for(let i=0;i<text.length;i++){
-    // If a halant is immediately after a vowel sign/nukta, put the halant+next
-    // character before that sign. This restores Unicode logical order.
-    if(i>0 && text.charAt(i)===HALANT && (isKar(text.charAt(i-1)) || isNukta(text.charAt(i-1))) && i<text.length-1){
-      text=text.substring(0,i-1)+text.charAt(i)+text.charAt(i+1)+text.charAt(i-1)+text.substring(i+2);
+// Clean transcription of the extracted V3 forward rearrangement logic.
+function rearrangeUnicodeConvertedText(s){
+  for(let i=0;i<s.length;i++){
+    if(i>0 && s.charAt(i)===HALANT && (isKar(s.charAt(i-1))||isNukta(s.charAt(i-1))) && i<s.length-1){
+      s=s.substring(0,i-1)+s.charAt(i)+s.charAt(i+1)+s.charAt(i-1)+s.substring(i+2);
     }
-
-    // Reorder a vowel sign following র্.
-    if(i>0 && i<text.length-1 && text.charAt(i)===HALANT && text.charAt(i-1)==="র" && text.charAt(i-2)!==HALANT && isKar(text.charAt(i+1))){
-      text=text.substring(0,i-1)+text.charAt(i+1)+text.charAt(i-1)+text.charAt(i)+text.substring(i+2);
+    if(i>0 && i<s.length-1 && s.charAt(i)===HALANT && s.charAt(i-1)==='র' && s.charAt(i-2)!==HALANT && isKar(s.charAt(i+1))){
+      s=s.substring(0,i-1)+s.charAt(i+1)+s.charAt(i-1)+s.charAt(i)+s.substring(i+2);
     }
-
-    // Reph: move র্ from after a consonant cluster to the beginning of that cluster.
-    if(i<text.length-1 && text.charAt(i)==="র" && isHalant(text.charAt(i+1)) && !isHalant(text.charAt(i-1))){
-      let distance=1;
+    if(i<s.length-1 && s.charAt(i)==='র' && isHalant(s.charAt(i+1)) && !isHalant(s.charAt(i-1))){
+      let n=1;
       while(true){
-        if(i-distance<0) break;
-        if(isBanjonborno(text.charAt(i-distance)) && isHalant(text.charAt(i-distance-1))){distance+=2;}
-        else if(distance===1 && isKar(text.charAt(i-distance))){distance++;}
+        if(i-n<0) break;
+        if(isBanjon(s.charAt(i-n)) && isHalant(s.charAt(i-n-1))) n+=2;
+        else if(n===1 && isKar(s.charAt(i-n))) n++;
         else break;
       }
-      text=text.substring(0,i-distance)+text.charAt(i)+text.charAt(i+1)+text.substring(i-distance,i)+text.substring(i+2);
-      i+=1;
-      continue;
+      s=s.substring(0,i-n)+s.charAt(i)+s.charAt(i+1)+s.substring(i-n,i)+s.substring(i+2);
+      i+=n+1; continue;
     }
-
-    // Pre-kar: move ে/ি/ৈ from before the consonant cluster to after it.
-    if(i<text.length-1 && isPreKar(text.charAt(i)) && !isSpace(text.charAt(i+1))){
-      let distance=1;
-      while(isBanjonborno(text.charAt(i+distance))){
-        if(isHalant(text.charAt(i+distance+1))) distance+=2;
-        else break;
-      }
-      let rebuilt=text.substring(0,i);
-      rebuilt+=text.substring(i+1,i+distance+1);
+    if(i<s.length-1 && isPreKar(s.charAt(i)) && !isSpace(s.charAt(i+1))){
+      let n=1;
+      while(isBanjon(s.charAt(i+n))){ if(isHalant(s.charAt(i+n+1))) n+=2; else break; }
+      let out=s.substring(0,i)+s.substring(i+1,i+n+1);
       let extra=0;
-      // Unicode ো/ৌ are logically decomposable as ে+া / ে+ৗ in this legacy
-      // conversion routine. Preserve the exact special handling of the original.
-      if(text.charAt(i)==="ে" && text.charAt(i+distance+1)==="ো"){rebuilt+="া";extra=1;}
-      else if(text.charAt(i)==="ে" && text.charAt(i+distance+1)==="ৌ"){rebuilt+="ৗ";extra=1;}
-      else rebuilt+=text.charAt(i);
-      rebuilt+=text.substring(i+distance+extra+1);
-      text=rebuilt;
-      i+=distance;
+      if(s.charAt(i)==='ে' && s.charAt(i+n+1)==='া'){ out+='ো'; extra=1; }
+      else if(s.charAt(i)==='ে' && s.charAt(i+n+1)==='ৗ'){ out+='ৌ'; extra=1; }
+      else out+=s.charAt(i);
+      out+=s.substring(i+n+extra+1);
+      s=out; i+=n;
     }
-
-    // Move a post-kar occurring immediately after the nasal sign to its proper place.
-    if(i<text.length-1 && text.charAt(i)==="ঁ" && isPostKar(text.charAt(i+1))){
-      text=text.substring(0,i)+text.charAt(i+1)+text.charAt(i)+text.substring(i+2);
+    if(i<s.length-1 && s.charAt(i)==='ঁ' && isPostKar(s.charAt(i+1))){
+      s=s.substring(0,i)+s.charAt(i+1)+s.charAt(i)+s.substring(i+2);
     }
   }
-  return text;
+  return s;
 }
 
-// Exact conceptual equivalent of V3 rconverter.js ReArrangeUnicodeText().
-function rearrangeUnicodeText(text){
-  let boundary=0;
-  for(let i=0;i<text.length;i++){
-    // Move a pre-kar to the front of the consonant cluster for legacy ANSI order.
-    if(i<text.length && isPreKar(text.charAt(i))){
-      let distance=1;
-      while(isBanjonborno(text.charAt(i-distance))){
-        if(i-distance<0 || i-distance<=boundary) break;
-        if(isHalant(text.charAt(i-distance-1))) distance+=2;
-        else break;
+// Clean transcription of the extracted V3 reverse rearrangement logic.
+function rearrangeUnicodeText(s){
+  let lastMoved=-1;
+  for(let i=0;i<s.length;i++){
+    if(i<s.length && isPreKar(s.charAt(i))){
+      let n=1;
+      while(isBanjon(s.charAt(i-n))){
+        if(i-n<0) break;
+        if(i-n<=lastMoved) break;
+        if(isHalant(s.charAt(i-n-1))) n+=2; else break;
       }
-      text=text.substring(0,i-distance)+text.charAt(i)+text.substring(i-distance,i)+text.substring(i+1);
-      boundary=i+1;
-      i=boundary-1;
-      continue;
+      s=s.substring(0,i-n)+s.charAt(i)+s.substring(i-n,i)+s.substring(i+1);
+      lastMoved=i+1; continue;
     }
-    // Move the র্/reph component after the relevant cluster for ANSI order.
-    if(i<text.length-1 && isHalant(text.charAt(i)) && text.charAt(i-1)==="র" && !isHalant(text.charAt(i-2))){
-      let distance=1, preKarExtra=0;
+    if(i<s.length-1 && isHalant(s.charAt(i)) && s.charAt(i-1)==='র' && !isHalant(s.charAt(i-2))){
+      let n=1, extra=0;
       while(true){
-        if(isBanjonborno(text.charAt(i+distance)) && isHalant(text.charAt(i+distance+1))) distance+=2;
-        else if(isBanjonborno(text.charAt(i+distance)) && isPreKar(text.charAt(i+distance+1))){preKarExtra=1;break;}
+        if(isBanjon(s.charAt(i+n)) && isHalant(s.charAt(i+n+1))) n+=2;
+        else if(isBanjon(s.charAt(i+n)) && isPreKar(s.charAt(i+n+1))){extra=1;break}
         else break;
       }
-      text=text.substring(0,i-1)+text.substring(i+distance+1,i+distance+preKarExtra+1)+text.substring(i+1,i+distance+1)+text.charAt(i-1)+text.charAt(i)+text.substring(i+distance+preKarExtra+1);
-      i+=distance+preKarExtra;
-      boundary=i+1;
-      continue;
+      s=s.substring(0,i-1)+s.substring(i+n+1,i+n+extra+1)+s.substring(i+1,i+n+1)+s.charAt(i-1)+s.charAt(i)+s.substring(i+n+extra+1);
+      i+=n+extra; lastMoved=i+1;
     }
   }
-  return text;
+  return s;
 }
-
-function replaceMap(text,pairs){
-  // The original uses new RegExp(key,"g"), so retain that behavior rather than
-  // treating every key as a plain literal. Mapping order is preserved.
-  for(const [key,value] of pairs){text=text.replace(new RegExp(key,"g"),value)}
-  return text;
+function htmlSafeToUnicode(s){
+  return s.replace(/&#([0-9A-Fa-f]{4});/g,(_,h)=>String.fromCharCode(parseInt(h,16)));
 }
-function htmlSafeToUnicode(text){
-  const re=/&#([0-9A-Fa-f]{4});/;
-  let m=re.exec(text);
-  while(m!==null){text=text.replace(new RegExp("&#"+m[1]+";","g"),String.fromCharCode(parseInt(m[1],16)));m=re.exec(text)}
-  return text;
+function unicodeToHtmlSafe(s){
+  let out=''; for(let i=0;i<s.length;i++){const c=s.charAt(i); if(c.charCodeAt(0)<128) out+=c; else out+='&#'+c.charCodeAt(0).toString(16).toUpperCase().padStart(4,'0')+';';} return out;
+}
+function applyMap(s,map){
+  for(const key in map) s=s.replace(new RegExp(key,'g'),map[key]);
+  return s;
 }
 function convertAnsiToUnicode(text){
-  text=replaceMap(text,ANSI_TO_UNICODE);
+  text=htmlSafeToUnicode(text);
+  text=applyMap(text,ANSI_TO_UNICODE);
   text=rearrangeUnicodeConvertedText(text);
-  return text.replace(/অা/g,"আ");
+  // Forward-only cleanup from V3. Never run this in Unicode → ANSI.
+  text=text.replace(/অা/g,'আ');
+  return text;
 }
 function convertUnicodeToAnsi(text){
   text=htmlSafeToUnicode(text);
-  // The original rconverter also accepts a second HTML-safe form: &#...;.
-  text=text.replace(/&#([0-9A-Fa-f]{4});/g,(_,hex)=>String.fromCharCode(parseInt(hex,16)));
+  // V3's reverse algorithm deliberately decomposes these visual vowel signs.
+  // This is the critical V4 handling: do NOT run অা→আ here.
+  text=text.replace(/ো/g,'ো');
+  text=text.replace(/ৌ/g,'ৌ');
   text=rearrangeUnicodeText(text);
-  return replaceMap(text,UNICODE_TO_ANSI);
+  return applyMap(text,UNICODE_TO_ANSI);
 }
-
-let mode="a2u";
-const input=document.getElementById("input"), output=document.getElementById("output"), status=document.getElementById("status");
-function updateMode(){document.getElementById("a2u").classList.toggle("primary",mode==="a2u");document.getElementById("u2a").classList.toggle("primary",mode==="u2a");document.getElementById("inputLabel").textContent=mode==="a2u"?"STM / Soumili text":"Unicode Bengali text";input.placeholder=mode==="a2u"?"এখানে STM / Soumili লেখা পেস্ট করুন...":"এখানে Unicode বাংলা লেখা পেস্ট করুন..."}
-document.getElementById("a2u").onclick=()=>{mode="a2u";updateMode()};document.getElementById("u2a").onclick=()=>{mode="u2a";updateMode()};
-document.getElementById("convert").onclick=()=>{output.value=mode==="a2u"?convertAnsiToUnicode(input.value):convertUnicodeToAnsi(input.value);status.textContent="Converted."};
-document.getElementById("swap").onclick=()=>{let t=input.value;input.value=output.value;output.value=t;mode=mode==="a2u"?"u2a":"a2u";updateMode()};
-document.getElementById("copy").onclick=async()=>{if(!output.value)return;try{await navigator.clipboard.writeText(output.value)}catch(_){output.select();document.execCommand("copy")}status.textContent="Output copied."};
-document.getElementById("clear").onclick=()=>{input.value="";output.value="";status.textContent="Cleared."};
-updateMode();
+const input=document.getElementById('input'), output=document.getElementById('output'), status=document.getElementById('status'), ansiFont=document.getElementById('ansiFont');
+let direction='a2u';
+function render(){output.classList.toggle('ansi',direction==='u2a');output.classList.toggle('unicode',direction==='a2u');output.style.fontFamily=direction==='u2a' ? ansiFont.value+', monospace' : "RuposhiUnicode, 'Noto Sans Bengali', sans-serif";}
+function convert(){try{output.value=direction==='a2u'?convertAnsiToUnicode(input.value):convertUnicodeToAnsi(input.value);status.textContent=direction==='a2u'?'ANSI → Unicode completed.':'Unicode → ANSI completed. ো/ৌ were handled as ো/ৌ before the legacy map; no extra আ normalization is applied.';render();}catch(e){status.textContent='Conversion error: '+e.message;}}
+document.getElementById('a2u').onclick=()=>{direction='a2u';convert()};document.getElementById('u2a').onclick=()=>{direction='u2a';convert()};
+input.addEventListener('input',()=>{if(input.value)convert();});ansiFont.onchange=render;
+document.getElementById('clear').onclick=()=>{input.value='';output.value='';status.textContent='Cleared.'};
+document.getElementById('swap').onclick=()=>{const t=input.value;input.value=output.value;output.value=t;direction=direction==='a2u'?'u2a':'a2u';render();};
+async function copy(v){try{await navigator.clipboard.writeText(v);status.textContent='Copied.'}catch{status.textContent='Clipboard access was blocked by the browser.'}}
+document.getElementById('copyIn').onclick=()=>copy(input.value);document.getElementById('copyOut').onclick=()=>copy(output.value);document.getElementById('copyOut2').onclick=()=>copy(output.value);render();
 </script></body></html>
