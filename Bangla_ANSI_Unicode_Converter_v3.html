@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="bn"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bangla ANSI ↔ Unicode Converter</title>
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--text:#172033;--muted:#667085;--primary:#2563eb;--border:#d9e2ec}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI","Noto Sans Bengali","Nirmala UI",sans-serif}
+header{background:linear-gradient(135deg,#2563eb,#1769aa);color:#fff;padding:24px 16px}header h1{max-width:1050px;margin:0 auto;font-size:28px}header p{max-width:1050px;margin:6px auto 0;opacity:.9}.wrap{max-width:1050px;margin:20px auto;padding:0 14px}.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;margin-bottom:16px;box-shadow:0 5px 20px #102a430d}.tabs,.actions{display:flex;gap:8px;flex-wrap:wrap}.tabs{margin-bottom:14px}button{border:0;border-radius:9px;padding:10px 14px;background:#e9eef5;color:#172033;font-weight:700;cursor:pointer}button.primary{background:var(--primary);color:#fff}button:hover{filter:brightness(.97)}textarea{width:100%;min-height:230px;resize:vertical;border:1px solid var(--border);border-radius:10px;padding:14px;font:22px/1.7 "Noto Sans Bengali","Nirmala UI",sans-serif;outline:0}textarea:focus{border-color:var(--primary);box-shadow:0 0 0 3px #1769aa20}.label{font-weight:700;margin:8px 0}.status{font-size:13px;color:var(--muted);margin-top:9px}.note{font-size:13px;color:var(--muted);line-height:1.6}footer{text-align:center;color:var(--muted);font-size:12px;padding:0 0 25px}
+</style></head><body>
+<header><h1>বাংলা ANSI ↔ ইউনিকোড কনভার্টার (V3)</h1></header>
+<main class="wrap"><section class="card">
+<div class="tabs"><button id="a2u" class="primary">ANSI → Unicode</button><button id="u2a">Unicode → ANSI</button></div>
+<div class="label" id="inputLabel">STM / Soumili text</div><textarea id="input" spellcheck="false" placeholder="এখানে STM/Soumili Bangla লেখা পেস্ট করুন..."></textarea>
+<div class="actions" style="margin:12px 0"><button class="primary" id="convert">Convert</button><button id="swap">Swap</button><button id="copy">Copy Output</button><button id="clear">Clear</button></div>
+<div class="label">Output</div><textarea id="output" readonly spellcheck="false" placeholder="Converted text..."></textarea>
+<div class="status" id="status">Ready</div>
+</section></main><footer>Powered by BanglaHaraf Font Foundry</footer>
+<script>
+"use strict";
+const ANSI_TO_UNICODE = [["0","০"],["1","১"],["2","২"],["3","৩"],["4","৪"],["5","৫"],["6","৬"],["7","৭"],["8","৮"],["9","৯"],["îûÄ","র‌্য"],["ÊÄ","্র্য"],["\"","ক্ষ্ম"],["Eþ","ক্ক"],["E","ক্ক"],["Q","ক্ট"],["_´«","ক্ত্ব"],["_«","ক্ত"],["ðþ","ক্ব"],["ð","ক্ব"],["ßþ;","স্ক্র"],["ß;","স্ক্র"],["e«","ক্র"],["ßþÏñ","স্ক্ল"],["„Ïþ","ক্ল"],["„Ï","ক্ল"],["„øþ","ক্ন"],["„ø","ক্ন"],["©","ক্ম"],["Çøþ","ক্ষ্ণ"],["Çø","ক্ষ্ণ"],["Ç´þ","ক্ষ্ব"],["Ç´","ক্ষ্ব"],["AÇþ","ঙ্ক্ষ"],["AÇ","ঙ্ক্ষ"],["Çþ","ক্ষ"],["Ç","ক্ষ"],[":","ক্স"],["…´","খ্ব"],[">","গ্গ"],["@”","গ্দ"],["\\?þ","গ্ধ"],["\\?","গ্ধ"],["@À","গ্ন"],["@»","গ্ব"],["@Â","গ্ম"],["@Õ","গ্ল"],["‡´","ঘ্ব"],["‡ø","ঘ্ন"],["Bþ","ঙ্ক"],["B","ঙ্ক"],["-","ঙ্ম"],["C","ঙ্খ"],["D","ঙ্গ"],["A‡","ঙ্ঘ"],["FŠ´é","চ্ছ্ব"],["FŠ´","চ্ছ্ব"],["F‰þ","চ্চ"],["F‰","চ্চ"],["FŠé","চ্ছ"],["FŠ","চ্ছ"],["þ","চ্ঞ"],["","চ্ঞ"],["Š´é","ছ্ব"],["Š´","ছ্ব"],["Iµ","জ্জ্ব"],["I","জ্জ"],["J","জ্ঝ"],["Kþé","জ্ঞ"],["K","জ্ঞ"],["‹µ","জ্ব"],["L","জ্র"],["Mþé","ঞ্চ"],["M","ঞ্চ"],["Nþ","ঞ্ছ"],["N","ঞ্ছ"],["O","ঞ্জ"],["P","ঞ্ঝ"],["R","ট্ট"],["Ý´þ","ট্ব"],["Ý´","ট্ব"],["","ট্ম"],["Uþ","ড্ড"],["U","ড্ড"],["\\^ùÝþ","ণ্ট"],["\\^ùÝ","ণ্ট"],["Zþ","ণ্ঠ"],["Z","ণ্ঠ"],["\\^éW","ণ্ঢ"],["\\]","ণ্ণ"],["\\^ùéÂ","ণ্ম"],["ª","ন্স"],["\\[þ","ণ্ড"],["\\[","ণ্ড"],["lsþ","ন্তু"],["ls","ন্তু"],["\\^é»","ণ্ব"],["_´","ত্ত্ব"],["_É«","ক্ত্র"],["_","ত্ত"],["a","ত্থ"],["b","ত্ন"],["d","ত্ম"],["“Ïþ","ত্ল"],["“Ï","ত্ল"],["gsþ","ন্ত্ব"],["gs","ন্ত্ব"],["gßþ","স্ত্ব"],["gß","স্ত্ব"],["c","ত্ব"],["e","ত্র"],["íÏ","থ্ল"],["í´","থ্ব"],["rm","ন্দ্ব"],["å†","দ্গ"],["å‡","দ্ঘ"],["jµ","দ্দ্ব"],["j","দ্দ"],["k´þ","দ্ধ্ব"],["k´","দ্ধ্ব"],["kþ","দ্ধ"],["k","দ্ধ"],["”ø","দ্ন"],["m","দ্ব"],["","দ্ভ্র"],["q","দ্ভ"],["p","দ্ম"],["•ø","ধ্ন"],["•¹","ধ্ব"],["","ধ্ম"],["rÝþ","ন্ট"],["rÝ","ন্ট"],["tþ","ন্ঠ"],["t","ন্ঠ"],["uþ","ন্ড"],["u","ন্ড"],["hsþ","ন্ত"],["hs","ন্ত"],["sþf","ন্ত্র"],["sþi","ন্থ"],["r”","ন্দ"],["õþ","ন্ধ"],["õ","ন্ধ"],["§¬","ন্ন"],["§º","ন্ব"],["§Ã","ন্ম"],["²Wz","প্ট"],["®","প্ত"],["²À","প্ন"],["¯","প্প"],["²Õ","প্ল"],["°","প্স"],["þ","ফ্ট"],["","ফ্ট"],["šÏþ","ফ্ল"],["šÏ","ফ্ল"],["¶","ব্জ"],["·","ব্দ"],["w","ন্দ্র"],["o","দ্র"],["¸þ","ব্ধ"],["¸","ব্ধ"],["î¹","ব্ব"],["îÏ","ব্ল"],["¼","ভ্র"],["¦Ïþ","ভ্ল"],["¦Ï","ভ্ল"],["Á¬","ম্ন"],["ßþ±","স্প্র"],["Á±","ম্প্র"],["Ü±","ষ্প্র"],["Á™","ম্প"],["Á³þ","ম্ফ"],["Á³","ম্ফ"],["Üº","ষ্ব"],["Áº","ম্ব"],["½þ","ম্ভ"],["½","ম্ভ"],["¾","ম্ভ্র"],["Á¿","ম্ম"],["ÁÔ","ম্ল"],["Íñ","ল্ক"],["Ñ","ল্গ"],["Î¢","ল্স"],["ÎÝþ","ল্ট"],["ÎÝ","ল্ট"],["Óþ","ল্ড"],["Ó","ল্ড"],["Ò","ল্প"],["Í³þ","ল্ফ"],["Í³","ল্ফ"],["Íº","ল্ব"],["ÍÃ","ল্ম"],["ÍÔ","ল্ল"],["Ö","শু"],["Øþ","শ্চ"],["Ø","শ্চ"],["ÙŠé","শ্ছ"],["ÙŠ","শ্ছ"],["ÙÀ","শ্ন"],["Ù»","শ্ব"],["ÙÂ","শ্ম"],["ÙÕ","শ্ল"],["×","শ্র"],["Üñ","ষ্ক"],["Ü;þ","ষ্ক্র"],["Ü;","ষ্ক্র"],["ÜT","ষ্ট"],["Ûþ","ষ্ঠ"],["Û","ষ্ঠ"],["¡Œ","ষ্ণ"],["Ü™","ষ্প"],["Ü³þ","ষ্ফ"],["Ü³","ষ্ফ"],["Ü¿","ষ্ম"],["ßþñ","স্ক"],["ÞÝþ","স্ট"],["ÞÝ","স্ট"],["ßþ<","স্খ"],["hßþ","স্ত"],["hß","স্ত"],["lßþ","স্তু"],["lß","স্তু"],["ßþf","স্ত্র"],["ßþi","স্থ"],["ßþ¬","স্ন"],["ßþ™","স্প"],["²Ì","প্র"],["ßþ³þ","স্ফ"],["ßþ³","স্ফ"],["ßþº","স্ব"],["ßþ¿","স্ম"],["ßþÔ","স্ল"],["ßþË","স্র"],["ý","হু"],["ã","হ্ণ"],["£¹","হ্ব"],["£«","হ্ন"],["áþ","হ্ম"],["á","হ্ম"],["ÁË","ম্র"],["â","হ্ল"],["£\\*","হৃ"],["X†","ড়্গ"],["@Ì","গ্র"],["€","ল্গু"],["=","গু"],["Å","র্"],["xy","আ"],["x","অ"],["£z","ই"],["{","ঈ"],["vþz","উ"],["\\|","ঊ"],["}","ঋ"],["~","এ"],["ú","ঐ"],["ç","ও"],["è","ঔ"],["Y","়ু"],["„þ","ক"],["„","ক"],["…","খ"],["†","গ"],["‡","ঘ"],["ˆ","ঙ"],["‰þ","চ"],["‰","চ"],["Šé","ছ"],["Š","ছ"],["‹","জ"],["Gþ","ঝ"],["G","ঝ"],["~Œ","ঞ"],["Ýþ","ট"],["Ý","ট"],["àþ","ঠ"],["à","ঠ"],["vþü","ড়"],["vþ","ড"],["v","ড"],["‘þü","ঢ়"],["‘þ","ঢ"],["‘","ঢ"],["’","ণ"],["“þ","ত"],["“","ত"],["í","থ"],["”","দ"],["•","ধ"],["˜","ন"],["þ™","প"],["šþ","ফ"],["š","ফ"],["îû","র"],["î","ব"],["¦þ","ভ"],["¦","ভ"],["›","ম"],["ëû","য়"],["ë","য"],["œ","ল"],["Ÿ","শ"],["¡ì","ষ"],["¢","স"],["£","হ"],["ê","ৎ"],["þ",""],["é",""],["y","া"],["!","ি"],["#","ী"],["%","ু"],["\\)","ূ"],["\\(","ূ"],["&","ু"],["\\$","ু"],["\\*","ূ"],[",","ৃ"],["öì","ে"],["ö","ে"],["÷ì","ৈ"],["÷","ৈ"],["ï","ৗ"],["ì",""],["æ","!"],["S","("],["V",")"],[" ","*"],["–",","],["éôé","-"],["ô","-"],["Ð","।"],["­",":"],["—",";"],["Ú","?"],["ò","‘"],["ó","’"],["‚","ং"],["ƒ","ঃ"],["¤","ঁ"],["Ê","্র"],["Æ","্র"],["È","্র"],["É","্র"],["Ä","্য"],["ä","্"]];
+const UNICODE_TO_ANSI = [["!","æ"],["\\(","S"],["\\)","V"],["\\*"," "],[",","–"],["-","éôé"],["।","Ð"],[":","­"],[";","—"],["\\?","Ú"],["‘","ò"],["’","ó"],["'","ó"],["্র্য","ÊÄ"],["র‌্য","îûÄ"],["ড়","vþü"],["ঢ়","‘þü"],["য়","ëû"],["ক্ষ্ম","\""],["ক্ষ্ণ","Çøþ"],["ক্ষ্ব","Ç´þ"],["ক্ক","Eþ"],["ক্ট","Q"],["ক্ত্ব","_´«"],["ক্ত","_«"],["ক্ব","ðþ"],["ঙ্ক্র","BÊþ"],["স্ক্র","ßþ;"],["ষ্ক্র","Ü;þ"],["ল্ক","Íñ"],["ক্র","e«"],["স্ক্ল","ßþÏñ"],["ক্ল","„Ïþ"],["ক্ন","„øþ"],["ক্ম","©"],["ঙ্ক্ষ","AÇþ"],["ক্ষ","Çþ"],["ক্স",":"],["খ্ব","…´"],["গ্গ",">"],["গ্ধ","?þ"],["গ্দ","@”"],["গ্ন","@À"],["গ্ব","@»"],["গ্ম","@Â"],["গ্ল","@Õ"],["ঘ্ব","‡´"],["ঘ্ন","‡ø"],["ঙ্ক","Bþ"],["ঙ্ম","-"],["ঙ্খ","C"],["ঙ্গ","D"],["ঙ্ঘ","A‡"],["চ্ছ্ব","FŠ´é"],["চ্চ","F‰þ"],["চ্ছ","FŠé"],["ছ্ব","Š´é"],["চ্ঞ","þ"],["জ়","‹"],["জ্জ্ব","Iµ"],["জ্জ","I"],["জ্ঝ","J"],["জ্ঞ","Kþé"],["জ্ব","‹µ"],["জ্র","L"],["ঞ্চ","Mþé"],["ঞ্ছ","Nþ"],["ঞ্জ","O"],["ঞ্ঝ","P"],["ট্ট","R"],["ট্ব","Ý´þ"],["ট্ম",""],["ড্ড","Uþ"],["ণ্ট","^ùÝþ"],["ণ্ঠ","Zþ"],["ণ্ঢ","^éW"],["ণ্ণ","]"],["ণ্ম","^ùéÂ"],["ন্স","ª"],["ণ্ড","[þ"],["ন্তু","lsþ"],["ণ্ব","^é»"],["ত্ত্ব","_´"],["ত্ত","_"],["ত্থ","a"],["ত্ন","b"],["ত্ম","d"],["ত্ল","“Ïþ"],["ন্ত্ব","gsþ"],["স্ত্ব","gßþ"],["ত্ব","c"],["থ্ল","íÏ"],["থ্ব","í´"],["দ্গ","å†"],["দ্ঘ","å‡"],["দ্দ্ব","jµ"],["দ্দ","j"],["দ্ধ্ব","k´þ"],["দ্ধ","kþ"],["দ্ন","”ø"],["ন্দ্ব","rm"],["দ্ব","m"],["দ্ভ্র",""],["দ্ভ","q"],["দ্ম","p"],["ধ্ন","•ø"],["ধ্ব","•¹"],["ধ্ম",""],["ন্ট","rÝþ"],["ন্ঠ","tþ"],["ন্ড","uþ"],["ন্ত্র","sþf"],["ন্ত","hsþ"],["স্ত্র","ßþf"],["ত্র","e"],["ন্থ","sþi"],["ন্ধ","õþ"],["ন্ন","§¬"],["ন্ব","§º"],["ন্ম","§Ã"],["প্ট","²Wz"],["প্ত","®"],["প্ন","²À"],["প্প","¯"],["প্ল","²Õ"],["প্স","°"],["ফ্ল","šÏþ"],["ফ্ট","þ"],["ব্জ","¶"],["ব্দ","·"],["ন্দ্র","w"], ["দ্র","o"],["ন্দ","r”"],["ব্ধ","¸þ"],["ব্ব","î¹"],["ব্ল","îÏ"],["ম্ভ্র","¾"],["ভ্র","¼"],["ভ্ল","¦Ïþ"],["ম্ন","Á¬"],["স্প্র","ßþ±"],["ম্প্র","Á±"],["ষ্প্র","Ü±"],["ম্প","Á™"],["ম্ফ","Á³þ"],["ম্ব্র","ÁºÉ"],["ম্ব","Áº"],["ম্ভ","½þ"],["ম্ম","Á¿"],["ম্ল","ÁÔ"],["ল্স","Î¢"],["ল্ট","ÎÝþ"],["ল্ড","Óþ"],["ল্প","Ò"],["ল্ফ","Í³þ"],["ল্ব","Íº"],["ল্ম","ÍÃ"],["ল্ল","ÍÔ"],["শু","Ö"],["শ্চ","Øþ"],["শ্ছ","ÙŠé"],["শ্ন","ÙÀ"],["শ্ব","Ù»"],["শ্ম","ÙÂ"],["শ্ল","ÙÕ"],["শ্র","×"],["ষ্ক","Üñ"],["ষ্ব","Üº"],["ষ্ট","ÜT"],["ষ্ঠ","Ûþ"],["ষ্ণ","¡Œ"],["ষ্প","Ü™"],["ষ্ফ","Ü³þ"],["ষ্ম","Ü¿"],["স্ক","ßþñ"],["স্ট","ÞÝþ"],["স্খ","ßþ<"],["স্তু","lßþ"],["স্ত","hßþ"],["স্থ","ßþi"],["স্ন","ßþ¬"],["স্প","ßþ™"],["প্র","²Ì"],["স্ফ","ßþ³þ"],["স্ব","ßþº"],["স্ম","ßþ¿"],["স্ল","ßþÔ"],["স্র","ßþË"],["হু","ý"],["হ্ণ","ã"],["হ্ব","£¹"],["হ্ন","£«"],["হ্ম","áþ"],["ম্র","ÁË"],["হ্ল","â"],["হৃ","£*"],["ড়্গ","X†"],["ল্গু","€"],["ল্গ","Ñ"],["গ্র","@Ì"],["গু","="],["র্","Å"],["্র","Ê"],["্য","Ä"],["্","ä"],["আ","xy"],["অ","x"],["ই","£z"],["ঈ","{"],["উ","vþz"],["ঊ","|"],["ঋ","}"],["এ","~"],["ঐ","ú"],["ও","ç"],["ঔ","è"],["ক","„þ"],["খ","…"],["গ","†"],["ঘ","‡"],["ঙ","ˆ"],["চ","‰þ"],["ছ","Šé"],["জ","‹"],["ঝ","Gþ"],["ঞ","~Œ"],["ট","Ýþ"],["ঠ","àþ"],["ড","vþ"],["ঢ","‘þ"],["ণ","’"],["ত","“þ"],["থ","í"],["দ","”"],["ধ","•"],["ন","˜"],["প","þ™"],["ফ","šþ"],["ব","î"],["ভ","¦þ"],["ম","›"],["য","ë"],["র","îû"],["ল","œ"],["শ","Ÿ"],["ষ","¡ì"],["স","¢"],["হ","£"],["ড়","vþü"],["ঢ়","‘þü"],["য়","ëû"],["ৎ","ê"],["০","0"],["১","1"],["২","2"],["৩","3"],["৪","4"],["৫","5"],["৬","6"],["৭","7"],["৮","8"],["৯","9"],["া","y"],["ি","!"],["ী","#"],["ু","%"],["ূ",")"],["ৃ",","],["ে","öì"],["ৈ","÷ì"],["ৗ","ï"],["ং","‚"],["ঃ","ƒ"],["ঁ","¤"]];
+
+// Original common.js character classes, written out for clarity.
+const PRE_KAR = new Set(["ি","ৈ","ে"]);
+const POST_KAR = new Set(["া","ো","ৌ","ৗ","ু","ূ","ী","ৃ"]);
+const KAR = new Set([...PRE_KAR,...POST_KAR]);
+const BANJONBORNO = new Set("কখগঘঙচছজঝঞটঠডঢণতথদধনপফবভমশষসহযরলয়ৎ".split(""));
+const NUKTA = new Set(["ং","ঃ","ঁ"]);
+const HALANT = "্";
+const SPACE = new Set([" ","\t","\n","\r"]);
+function isPreKar(c){return PRE_KAR.has(c)}
+function isPostKar(c){return POST_KAR.has(c)}
+function isKar(c){return KAR.has(c)}
+function isBanjonborno(c){return BANJONBORNO.has(c)}
+function isNukta(c){return NUKTA.has(c)}
+function isHalant(c){return c===HALANT}
+function isSpace(c){return SPACE.has(c)}
+
+// Exact conceptual equivalent of V3 ReArrangeUnicodeConvertedText().
+// It is deliberately written with readable names instead of obfuscated identifiers.
+function rearrangeUnicodeConvertedText(text){
+  for(let i=0;i<text.length;i++){
+    // If a halant is immediately after a vowel sign/nukta, put the halant+next
+    // character before that sign. This restores Unicode logical order.
+    if(i>0 && text.charAt(i)===HALANT && (isKar(text.charAt(i-1)) || isNukta(text.charAt(i-1))) && i<text.length-1){
+      text=text.substring(0,i-1)+text.charAt(i)+text.charAt(i+1)+text.charAt(i-1)+text.substring(i+2);
+    }
+
+    // Reorder a vowel sign following র্.
+    if(i>0 && i<text.length-1 && text.charAt(i)===HALANT && text.charAt(i-1)==="র" && text.charAt(i-2)!==HALANT && isKar(text.charAt(i+1))){
+      text=text.substring(0,i-1)+text.charAt(i+1)+text.charAt(i-1)+text.charAt(i)+text.substring(i+2);
+    }
+
+    // Reph: move র্ from after a consonant cluster to the beginning of that cluster.
+    if(i<text.length-1 && text.charAt(i)==="র" && isHalant(text.charAt(i+1)) && !isHalant(text.charAt(i-1))){
+      let distance=1;
+      while(true){
+        if(i-distance<0) break;
+        if(isBanjonborno(text.charAt(i-distance)) && isHalant(text.charAt(i-distance-1))){distance+=2;}
+        else if(distance===1 && isKar(text.charAt(i-distance))){distance++;}
+        else break;
+      }
+      text=text.substring(0,i-distance)+text.charAt(i)+text.charAt(i+1)+text.substring(i-distance,i)+text.substring(i+2);
+      i+=1;
+      continue;
+    }
+
+    // Pre-kar: move ে/ি/ৈ from before the consonant cluster to after it.
+    if(i<text.length-1 && isPreKar(text.charAt(i)) && !isSpace(text.charAt(i+1))){
+      let distance=1;
+      while(isBanjonborno(text.charAt(i+distance))){
+        if(isHalant(text.charAt(i+distance+1))) distance+=2;
+        else break;
+      }
+      let rebuilt=text.substring(0,i);
+      rebuilt+=text.substring(i+1,i+distance+1);
+      let extra=0;
+      // Unicode ো/ৌ are logically decomposable as ে+া / ে+ৗ in this legacy
+      // conversion routine. Preserve the exact special handling of the original.
+      if(text.charAt(i)==="ে" && text.charAt(i+distance+1)==="ো"){rebuilt+="া";extra=1;}
+      else if(text.charAt(i)==="ে" && text.charAt(i+distance+1)==="ৌ"){rebuilt+="ৗ";extra=1;}
+      else rebuilt+=text.charAt(i);
+      rebuilt+=text.substring(i+distance+extra+1);
+      text=rebuilt;
+      i+=distance;
+    }
+
+    // Move a post-kar occurring immediately after the nasal sign to its proper place.
+    if(i<text.length-1 && text.charAt(i)==="ঁ" && isPostKar(text.charAt(i+1))){
+      text=text.substring(0,i)+text.charAt(i+1)+text.charAt(i)+text.substring(i+2);
+    }
+  }
+  return text;
+}
+
+// Exact conceptual equivalent of V3 rconverter.js ReArrangeUnicodeText().
+function rearrangeUnicodeText(text){
+  let boundary=0;
+  for(let i=0;i<text.length;i++){
+    // Move a pre-kar to the front of the consonant cluster for legacy ANSI order.
+    if(i<text.length && isPreKar(text.charAt(i))){
+      let distance=1;
+      while(isBanjonborno(text.charAt(i-distance))){
+        if(i-distance<0 || i-distance<=boundary) break;
+        if(isHalant(text.charAt(i-distance-1))) distance+=2;
+        else break;
+      }
+      text=text.substring(0,i-distance)+text.charAt(i)+text.substring(i-distance,i)+text.substring(i+1);
+      boundary=i+1;
+      i=boundary-1;
+      continue;
+    }
+    // Move the র্/reph component after the relevant cluster for ANSI order.
+    if(i<text.length-1 && isHalant(text.charAt(i)) && text.charAt(i-1)==="র" && !isHalant(text.charAt(i-2))){
+      let distance=1, preKarExtra=0;
+      while(true){
+        if(isBanjonborno(text.charAt(i+distance)) && isHalant(text.charAt(i+distance+1))) distance+=2;
+        else if(isBanjonborno(text.charAt(i+distance)) && isPreKar(text.charAt(i+distance+1))){preKarExtra=1;break;}
+        else break;
+      }
+      text=text.substring(0,i-1)+text.substring(i+distance+1,i+distance+preKarExtra+1)+text.substring(i+1,i+distance+1)+text.charAt(i-1)+text.charAt(i)+text.substring(i+distance+preKarExtra+1);
+      i+=distance+preKarExtra;
+      boundary=i+1;
+      continue;
+    }
+  }
+  return text;
+}
+
+function replaceMap(text,pairs){
+  // The original uses new RegExp(key,"g"), so retain that behavior rather than
+  // treating every key as a plain literal. Mapping order is preserved.
+  for(const [key,value] of pairs){text=text.replace(new RegExp(key,"g"),value)}
+  return text;
+}
+function htmlSafeToUnicode(text){
+  const re=/&#([0-9A-Fa-f]{4});/;
+  let m=re.exec(text);
+  while(m!==null){text=text.replace(new RegExp("&#"+m[1]+";","g"),String.fromCharCode(parseInt(m[1],16)));m=re.exec(text)}
+  return text;
+}
+function convertAnsiToUnicode(text){
+  text=replaceMap(text,ANSI_TO_UNICODE);
+  text=rearrangeUnicodeConvertedText(text);
+  return text.replace(/অা/g,"আ");
+}
+function convertUnicodeToAnsi(text){
+  text=htmlSafeToUnicode(text);
+  // The original rconverter also accepts a second HTML-safe form: &#...;.
+  text=text.replace(/&#([0-9A-Fa-f]{4});/g,(_,hex)=>String.fromCharCode(parseInt(hex,16)));
+  text=rearrangeUnicodeText(text);
+  return replaceMap(text,UNICODE_TO_ANSI);
+}
+
+let mode="a2u";
+const input=document.getElementById("input"), output=document.getElementById("output"), status=document.getElementById("status");
+function updateMode(){document.getElementById("a2u").classList.toggle("primary",mode==="a2u");document.getElementById("u2a").classList.toggle("primary",mode==="u2a");document.getElementById("inputLabel").textContent=mode==="a2u"?"STM / Soumili text":"Unicode Bengali text";input.placeholder=mode==="a2u"?"এখানে STM / Soumili লেখা পেস্ট করুন...":"এখানে Unicode বাংলা লেখা পেস্ট করুন..."}
+document.getElementById("a2u").onclick=()=>{mode="a2u";updateMode()};document.getElementById("u2a").onclick=()=>{mode="u2a";updateMode()};
+document.getElementById("convert").onclick=()=>{output.value=mode==="a2u"?convertAnsiToUnicode(input.value):convertUnicodeToAnsi(input.value);status.textContent="Converted."};
+document.getElementById("swap").onclick=()=>{let t=input.value;input.value=output.value;output.value=t;mode=mode==="a2u"?"u2a":"a2u";updateMode()};
+document.getElementById("copy").onclick=async()=>{if(!output.value)return;try{await navigator.clipboard.writeText(output.value)}catch(_){output.select();document.execCommand("copy")}status.textContent="Output copied."};
+document.getElementById("clear").onclick=()=>{input.value="";output.value="";status.textContent="Cleared."};
+updateMode();
+</script></body></html>
