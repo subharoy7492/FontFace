@@ -501,6 +501,33 @@ body.dark .hero{background:var(--bg)}
 body.dark .font-preview{background:#0f172a}
 body.dark .btn-light,body.dark .close-btn{background:#334155;color:#e5e7eb}
 
+/* Converter Versions */
+.converter-page{
+  padding:55px 0 75px;
+  min-height:calc(100vh - 140px);
+  background:
+    radial-gradient(circle at 10% 10%,rgba(37,99,235,.10),transparent 28%),
+    radial-gradient(circle at 90% 20%,rgba(96,165,250,.12),transparent 28%),
+    var(--bg);
+}
+.converter-hero{text-align:center;margin-bottom:32px}
+.converter-hero .badge{margin-bottom:12px}
+.converter-hero h1{margin:0 0 8px;font-size:clamp(30px,5vw,48px)}
+.converter-hero h1 span{color:var(--primary)}
+.converter-hero p{margin:0 auto;color:var(--muted);max-width:680px}
+.converter-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1050px;margin:0 auto}
+.converter-card{position:relative;display:flex;flex-direction:column;min-height:245px;padding:24px;background:var(--card);border:1px solid var(--border);border-radius:20px;box-shadow:0 8px 25px rgba(15,23,42,.06);transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;overflow:hidden}
+.converter-card:hover{transform:translateY(-5px);border-color:var(--primary);box-shadow:0 15px 35px rgba(37,99,235,.14)}
+.converter-number{width:44px;height:44px;display:grid;place-items:center;border-radius:13px;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;font-size:19px;font-weight:800;margin-bottom:18px}
+.converter-card h3{margin:0 0 7px;font-size:21px}
+.converter-card p{margin:0;color:var(--muted);font-size:13px;line-height:1.7}
+.converter-card .converter-open{margin-top:auto;padding-top:18px;color:var(--primary);font-size:13px;font-weight:800}
+.converter-card .converter-open::after{content:" →";transition:margin-left .2s}
+.converter-card:hover .converter-open::after{margin-left:5px}
+body.dark .converter-card{box-shadow:0 8px 25px rgba(0,0,0,.18)}
+@media(max-width:850px){.converter-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.converter-page{padding:42px 0 60px}.converter-grid{grid-template-columns:1fr;gap:14px}.converter-card{min-height:210px;padding:20px}}
+
 /* Mobile */
 .mobile-nav{display:none}
 @media(max-width:850px){
@@ -555,7 +582,7 @@ body.dark .btn-light,body.dark .close-btn{background:#334155;color:#e5e7eb}
     <nav class="nav">
       <button id="nav-home" onclick="showPage('home')">হোম</button>
       <button id="nav-search" onclick="showPage('search')">সকল ফন্ট</button>
-      <a class="nav-converter" href="Bangla_ANSI_Unicode_Converter_v3.html" target="_blank" rel="noopener">কনভার্টার</a>
+      <button id="nav-converter" class="nav-converter" onclick="showPage('converter')">কনভার্টার</button>
       <button id="nav-compare" onclick="showPage('compare')">তুলনা</button>
     </nav>
 
@@ -566,7 +593,7 @@ body.dark .btn-light,body.dark .close-btn{background:#334155;color:#e5e7eb}
 <div class="mobile-nav">
   <button id="m-home" onclick="showPage('home')">⌂<br>হোম</button>
   <button id="m-search" onclick="showPage('search')">Aa<br>সমস্ত ফন্ট</button>
-  <a class="nav-converter-mobile" href="Bangla_ANSI_Unicode_Converter_v3.html" target="_blank" rel="noopener">⇄<br>কনভার্টার</a>
+  <button class="nav-converter-mobile" id="m-converter" onclick="showPage('converter')">⇄<br>কনভার্টার</button>
   <button id="m-compare" onclick="showPage('compare')">≔<br>তুলনা</button>
 </div>
 
@@ -671,6 +698,25 @@ body.dark .btn-light,body.dark .close-btn{background:#334155;color:#e5e7eb}
     </div>
 
     <p id="noResults" style="display:none;text-align:center;padding:50px;color:var(--muted)">কোনো ফন্ট পাওয়া যায়নি।</p>
+  </div>
+</section>
+
+<!-- ========================= CONVERTER VERSIONS ========================= -->
+<section id="page-converter" class="page converter-page">
+  <div class="container">
+    <div class="converter-hero">
+      <span class="badge">বাংলা ANSI ↔ ইউনিকোড কনভার্টার</span>
+      <h1>কনভার্টার <span>ভার্সনসমূহ</span></h1>
+      <p>আপনার প্রয়োজন অনুযায়ী কনভার্টারের যেকোনো ভার্সন নির্বাচন করুন। প্রতিটি কার্ড সংশ্লিষ্ট আলাদা HTML পেজে নিয়ে যাবে।</p>
+    </div>
+    <div class="converter-grid">
+      <a class="converter-card" href="Bangla_ANSI_Unicode_Converter_v1.html"><span class="converter-number">1</span><h3>Converter V1</h3><p>বাংলা ANSI ↔ Unicode কনভার্টারের প্রথম সংস্করণ।</p><span class="converter-open">ভার্সন খুলুন</span></a>
+      <a class="converter-card" href="Bangla_ANSI_Unicode_Converter_v2.html"><span class="converter-number">2</span><h3>Converter V2</h3><p>বাংলা ANSI ↔ Unicode কনভার্টারের দ্বিতীয় সংস্করণ।</p><span class="converter-open">ভার্সন খুলুন</span></a>
+      <a class="converter-card" href="Bangla_ANSI_Unicode_Converter_v3.html"><span class="converter-number">3</span><h3>Converter V3</h3><p>বর্তমান V3 কনভার্টার পেজে সরাসরি প্রবেশ করুন।</p><span class="converter-open">ভার্সন খুলুন</span></a>
+      <a class="converter-card" href="Bangla_ANSI_Unicode_Converter_v4.html"><span class="converter-number">4</span><h3>Converter V4</h3><p>বাংলা ANSI ↔ Unicode কনভার্টারের চতুর্থ সংস্করণ।</p><span class="converter-open">ভার্সন খুলুন</span></a>
+      <a class="converter-card" href="Bangla_ANSI_Unicode_Converter_v5.html"><span class="converter-number">5</span><h3>Converter V5</h3><p>বাংলা ANSI ↔ Unicode কনভার্টারের পঞ্চম সংস্করণ।</p><span class="converter-open">ভার্সন খুলুন</span></a>
+      <a class="converter-card" href="Bangla_ANSI_Unicode_Converter_v6.html"><span class="converter-number">6</span><h3>Converter V6</h3><p>বাংলা ANSI ↔ Unicode কনভার্টারের ষষ্ঠ সংস্করণ।</p><span class="converter-open">ভার্সন খুলুন</span></a>
+    </div>
   </div>
 </section>
 
@@ -1464,4 +1510,4 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 </body>
-</html>
+   </html>
