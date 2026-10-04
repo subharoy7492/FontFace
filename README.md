@@ -37,4 +37,4 @@ Replace `@latest` with `@v1.0.0` or a commit SHA in the jsDelivr URL to avoid ca
 
 ## License & legal
 Visit <a href="https://banglaharaf.com">BanglaHaraf Font Foundry</a> for Licence. 
-Keywords: Bangla web Font, Embed Bangla web font in html, Bengali web font embed
+Keywords: Bangla web Font, Embed Bangla web font in html, Bengali web font embed, Bengali font face integration 
