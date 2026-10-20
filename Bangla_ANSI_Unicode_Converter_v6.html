@@ -146,7 +146,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:20px 0 25px}
       <button id="u2a" class="btn-action">Unicode → ANSI</button>
     </div>
     <div class="label" id="inputLabel">Top Type/SRV Bangla text</div>
-    <textarea id="input" class="converter-text" spellcheck="false" placeholder="এখানে Top Type/SRV Bangla লেখা পেস্ট করুন..."></textarea>
+    <textarea id="input" class="converter-text" spellcheck="false" placeholder="এখানে Top Type/Samit/SRV Bangla লেখা পেস্ট করুন..."></textarea>
     
     <div class="actions" style="margin:12px 0">
       <button class="btn-action primary" id="convert">Convert</button>
@@ -334,7 +334,7 @@ function updateMode(){
   document.getElementById("a2u").classList.toggle("primary",mode==="a2u");
   document.getElementById("u2a").classList.toggle("primary",mode==="u2a");
   document.getElementById("inputLabel").textContent=mode==="a2u"?"Top Type/SRV Bangla text":"Unicode Bengali text";
-  input.placeholder=mode==="a2u"?"এখানে Top Type/Samit/SRV Bangla লেখা পেস্ট করুন...":"এখানে Unicode বাংলা লেখা পেস্ট করুন...";
+  input.placeholder=mode==="a2u"?"এখানে টপ টাইপ/সমিত/SRV বাংলা লেখা পেস্ট করুন...":"এখানে Unicode বাংলা লেখা পেস্ট করুন...";
 }
 
 document.getElementById("a2u").onclick=()=>{mode="a2u";updateMode()};
