@@ -86,6 +86,7 @@
         font-family: 'BanglaBrush';
         src: url(https://cdn.jsdelivr.net/gh/subharoy7492/FontFace/fonts/NilBanglaBrush.woff2) format('woff2'); font-display: swap;
 }
+
 @font-face {
         font-family: 'V1';
         src: url(https://cdn.jsdelivr.net/gh/subharoy7492/FontFace/fonts/V1.woff2) format('woff2'); font-display: swap;
