@@ -1,39 +1,112 @@
-# FontFace — CDN template
+# বাংলা হরফ — Bangla Font Foundry
 
-This repo contains a font-face template to host free bangla fonts developed by Bangla Haraf Font Foundry and serve them as a CDN via jsDelivr. Add font files into /fonts/ and use the provided CSS at /css/fonts.css.
+### A Bengali Typography, Font Preview, Web Font Integration & Conversion Platform
 
-## Quick start
+**বাংলা হরফ (BanglaHaraf)** is a Bengali typography platform designed to make discovering, testing, comparing, and using Bengali fonts easier for designers, developers, typographers, and Bengali language enthusiasts.
 
-1. Add font files to the `fonts/` folder. Suggested filenames:
-   - `fonts/MyFont.woff2`
-   - `fonts/MyFont.woff`
-   - `fonts/MyFont-Bold.woff2`
-   - `fonts/MyFont-Bold.woff`
+🌐 **Live Website:** https://subharoy7492.github.io/FontFace/
 
-2. Convert or subset (optional):
+---
 
-```bash
-# Convert TTF/OTF to WOFF2 (Google's woff2 tool)
-woff2_compress MyFont.ttf
+## ✨ Features
 
-# Or create a subset with fonttools (pyftsubset) to reduce size
-pyftsubset MyFont.ttf --output-file=MyFont-sBanglaHaraf  --flavor=woff2 --unicodes=U+0020-007E --layout-features='*' --no-hinting
-```
+### 1. Bengali Font Directory
+- Browse and discover Bengali fonts.
+- Search fonts by name.
+- Explore fonts through different typography categories.
+- Find font information, designer credits, licensing details, and download links.
 
-3. Reference the CSS from the CDN (jsDelivr):
+### 2. Font Categories
+Browse fonts based on their visual styles:
 
-```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/subharoy7492/FontFace@latest/css/fonts.css">
-<link rel="preload" href="https://cdn.jsdelivr.net/gh/subharoy7492/FontFace@latest/fonts/MyFont.woff2" as="font" type="font/woff2" crossorigin>
-```
+- Serif
+- Sans-serif
+- Display
+- Cursive
 
-4. Pin to a version for stable caching:
+### 3. Live Font Preview
+- Preview Bengali fonts using your own text.
+- Test different typefaces before downloading.
+- View Bengali characters and text in their intended typography.
 
-Replace `@latest` with `@v1.0.0` or a commit SHA in the jsDelivr URL to avoid cache surprises.
+### 4. Font Comparison
+Compare two Bengali typefaces side by side using identical text.
 
-## Headers and CORS
-- jsDelivr serves GitHub-hosted files with appropriate Content-Type and CORS for fonts.
-- If you host elsewhere (S3, CloudFront, Cloudflare), ensure `Access-Control-Allow-Origin` and `Content-Type` are set correctly.
+- Select two different fonts.
+- Customize the preview size.
+- Compare letterforms, readability, and visual appearance.
+
+### 5. Bengali ANSI ↔ Unicode Converter
+
+A collection of Bengali text conversion tools supporting different legacy Bengali font encoding systems.
+
+Available converter versions:
+
+| Version | Supported Font Encoding |
+|---|---|
+| V1 | Bijoy Old / Avro ANSI |
+| V2 | Bijoy New |
+| V3 | STM / Soumili |
+| V4 | Perfect Typist Old (PS) |
+| V5 | Perfect Typist New (TTF) |
+| V6 | Top Type / Samity / SRV Bangla |
+| V7 | Lipi Office |
+| V8 | Adarshalipi / Prashika / Bangla Word |
+
+Each converter is available through its dedicated page.
+
+### 6. Web Font Integration
+
+Easily integrate Bengali fonts into websites using generated HTML and CSS code.
+
+The integration section provides:
+
+- HTML stylesheet integration.
+- CSS `@font-face` usage.
+- HTML element font-family examples.
+- Copy-to-clipboard functionality.
+
+---
+
+## 🎯 Project Goals
+
+BanglaHaraf aims to:
+
+- Promote Bengali typography and digital font culture.
+- Make Bengali fonts easier to discover and use.
+- Help graphic designers choose appropriate typefaces.
+- Simplify legacy ANSI and modern Unicode text conversion.
+- Encourage Bengali web typography through accessible font integration.
+
+---
+
+## 🔗 Related Projects
+
+Explore other BanglaHaraf resources:
+
+- **BanglaHaraf Font Foundry:** https://banglaharaf.com/
+- **Bangla Font Finder:** https://banglafontfinder.streamlit.app/
+- **Bangla ANSI Document Converter:** https://ansitounicode.streamlit.app/
+
+---
+
+## 📜 Font Licensing
+
+Font licensing varies depending on the original designer and publisher.
+
+Please check the individual font's licensing information before using it in personal or commercial projects.
+
+The availability of a font on this platform does not automatically mean that it is free for unrestricted commercial use.
+
+---
+
+## ❤️ Credits
+
+**<a href="https://banglaharaf.com">Developed by BanglaHaraf — বাংলা হরফ</a>**
+
+Dedicated to Bengali typography, digital lettering, and the preservation and promotion of Bengali script.
+
+© 2026 BanglaHaraf. All rights reserved.
 
 ## License & legal
 Visit <a href="https://banglaharaf.com">BanglaHaraf Font Foundry</a> for Licence. 
