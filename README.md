@@ -108,6 +108,5 @@ Dedicated to Bengali typography, digital lettering, and the preservation and pro
 
 © 2026 BanglaHaraf. All rights reserved.
 
-## License & legal
-Visit <a href="https://banglaharaf.com">BanglaHaraf Font Foundry</a> for Licence. 
-Keywords: Bangla web Font, Embed Bangla web font in html, Bengali web font embed, Bengali font face integration 
+## Keywords
+Bangla web font, Embed Bangla web font in website, Bengali web font embed, Bengali font face integration, bangla ansi font converter, bangla font preview 
