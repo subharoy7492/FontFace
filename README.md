@@ -1,6 +1,6 @@
 # বাংলা হরফ — Bangla Font Foundry
 
-### A Bengali Typography, Font Preview, Web Font Integration & Conversion Platform
+### A Bengali Typography, Font Preview, Web Font Integration & Text Encoding Conversion Platform
 
 **বাংলা হরফ (BanglaHaraf)** is a Bengali typography platform designed to make discovering, testing, comparing, and using Bengali fonts easier for designers, developers, typographers, and Bengali language enthusiasts.
 
